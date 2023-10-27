@@ -1,0 +1,173 @@
+---
+import Icon from "astro-icon";
+import Card from "../components/Card.astro";
+import Panel from "../layouts/Panel.astro";
+---
+
+<Panel title="Find your Maker now">
+	<main class="grid w-full grid-cols-1 pr-24 min-h-screen">
+		<section class="w-full p-4 pt-5 pb-0 box-border">
+			<h1 class="text-white text-2xl text-left mb-3">Discover Talent</h1>
+			<div class="talents w-full grid grid-auto-fit gap-3">
+				<Card
+					author="Mateo"
+					title="Short Leandro"
+					time="1h 20m"
+					starred={4.3}
+					author_photo="./director-2.jpg"
+					banner="./building.jpg"
+				/>
+				<Card
+					author="Mateo"
+					title="Short Leandro"
+					time="1h 20m"
+					starred={4.3}
+					author_photo="./director-2.jpg"
+					banner="./moon_bg.jpg"
+				/>
+				<Card
+					author="Lucas"
+					title="Please, don't replace me"
+					time="1h 20m"
+					starred={4.3}
+					author_photo="./director-3.jpg"
+					banner="./building.jpg"
+				/>
+				<Card
+					author="Juan"
+					title="I'm lock with key"
+					time="1h 20m"
+					starred={4.3}
+					price="$ 24"
+					author_photo="./director-1.jpg"
+					banner="./mountain.jpg"
+				/>
+			</div>
+		</section>
+		<!-- Categories -->
+		<section class="w-full pl-2 box-border">
+			<h2 class="text-white text-2xl mb-4 pl-3 mt-4">Categories</h2>
+			<div class="flex justify-between gap-4 ml-2">
+				<article
+					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+				>
+					<Icon name="mdi:trending-up" color="white" width="30px" />
+					<span>Sales</span>
+				</article>
+				<article
+					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+				>
+					<Icon name="mdi:person" color="white" width="30px" />
+					<span>HR</span>
+				</article>
+				<article
+					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+				>
+					<Icon name="mdi:gesture" color="white" width="30px" />
+					<span>Drawing</span>
+				</article>
+				<article
+					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+				>
+					<Icon name="mdi:table" color="white" width="30px" />
+					<span>Big data</span>
+				</article>
+				<article
+					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+				>
+					<Icon name="mdi:brush" color="white" width="30px" />
+					<span>Design</span>
+				</article>
+				<article
+					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+				>
+					<Icon name="mdi:lightbulb" color="white" width="30px" />
+					<span>Marketing</span>
+				</article>
+				<article
+					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+				>
+					<Icon name="mdi:creation" color="white" width="30px" />
+					<span>Astronomy</span>
+				</article>
+			</div>
+		</section>
+		<!-- My Learning -->
+		<section class="w-full pl-2 mb-2 mt-2 box-border">
+			<h2 class="text-white text-2xl mb-4 pl-3">My Learning</h2>
+			<div class="flex justify-between gap-3 ml-2 h-32">
+				<article
+					class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[160px] flex gap-4 w-full"
+				>
+					<img
+						src="/becoming_photographer.jpg"
+						alt="A camera taking a photo."
+						class="rounded-lg w-52 object-cover h-full"
+					/>
+
+					<div>
+						<Icon
+							name="mdi:bookmark"
+							width="30px"
+							color="white"
+							class="bg-carmesi rounded-full p-1 absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80"
+						/>
+						<h3 class="text-white text-lg">
+							Becoming a photographer
+						</h3>
+						<div class="flex justify-between px-2 pl-0">
+							<div class="flex items-center gap-2">
+								<Icon
+									name="mdi:clock-time-twelve"
+									width="20"
+									color="white"
+								/>
+								<span class="text-white/70 text-xs"
+									>69% complete</span
+								>
+							</div>
+						</div>
+					</div>
+				</article>
+				<article
+					class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[240px] flex gap-4 w-full"
+				>
+					<img
+						src="/design_thinking.jpg"
+						alt="A camera taking a photo."
+						class="rounded-lg w-52 object-cover h-full"
+					/>
+
+					<div>
+						<Icon
+							name="mdi:bookmark"
+							width="30px"
+							class="bg-white rounded-full p-1 absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80"
+						/>
+						<h3 class="text-white text-lg">
+							Becoming a photographer
+						</h3>
+						<div class="flex justify-between px-2 pl-0">
+							<div class="flex items-center gap-2">
+								<Icon
+									name="mdi:clock-time-twelve"
+									width="20"
+									color="white"
+								/>
+								<span class="text-white/70 text-xs"
+									>69% complete</span
+								>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<style>
+		* {
+			font-family: Poppins;
+		}
+	</style>
+</Panel>

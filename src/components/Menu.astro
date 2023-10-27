@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<aside
+    class="flex flex-col items-center gap-6 w-20 bg-[#222] p-2 h-screen rounded-e-sm sticky top-0"
+>
+    <img src="/favicon.png" width="28" class="mb-3 mt-4" />
+
+    <div class="flex flex-col gap-4">
+        <a
+            href="/"
+            class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
+        >
+            <Icon name="mdi:home" width="25px" color="white" />Home</a
+        >
+        <a
+            href="/search"
+            class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
+        >
+            <Icon name="mdi:magnify" width="25px" color="white" />Search</a
+        >
+        <a
+            href="/projects"
+            class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
+        >
+            <Icon
+                name="mdi:play-circle"
+                width="25px"
+                color="white"
+            />Projects</a
+        >
+        <a
+            href="/search"
+            class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
+        >
+            <Icon name="mdi:bookmark" width="25px" color="white" />Saved</a
+        >
+        <a
+            href="/profile"
+            class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
+        >
+            <Icon name="mdi:account" width="25px" color="white" />Profile</a
+        >
+    </div>
+</aside>
