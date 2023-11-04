@@ -1,14 +1,20 @@
 ---
+import Panel from "../layouts/Panel.astro";
 import Icon from "astro-icon";
 import Cards from "../components/Cards.astro";
-import Panel from "../layouts/Panel.astro";
+
+if (!Astro.cookies.has("logged")) return Astro.redirect("/signup", 303);
+
+const USERNAME = Astro.cookies.get("name").value;
 ---
 
 <Panel title="Find your Maker now">
 	<main class="grid w-full grid-cols-1 pr-12 pb-4 min-h-screen">
 		<!-- Talents -->
 		<section class="w-full p-4 pt-5 pb-0 box-border">
-			<h1 class="text-white text-2xl text-left mb-3">Discover Talent</h1>
+			<h1 class="text-white text-2xl text-left mb-3">
+				Discover Talents, {USERNAME}
+			</h1>
 			<Cards filter="" />
 		</section>
 		<!-- Categories -->
