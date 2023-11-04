@@ -5,6 +5,9 @@ export default {
 		extend: {
 			colors: {
 				carmesi: '#df2121'
+			},
+			fontFamily: {
+				poppins: ["Poppins", "sans"]
 			}
 		},
 	},
