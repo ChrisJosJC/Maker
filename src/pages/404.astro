@@ -6,12 +6,35 @@ import Panel from "../layouts/Panel.astro";
     <main
         class="grid w-full grid-cols-1 pr-12 pb-4 min-h-screen place-items-center"
     >
-        <h1 class="text-white text-[100px] font-black block">ERROR 404</h1>
+        <div class="grid place-items-center p-4 animate-pulse">
+            <img
+                loading="lazy"
+                decoding="async"
+                src="/claqueta.png"
+                alt="Claqueta y palomitas"
+                width="400px"
+            />
+            <h1
+                class="text-white text-[100px] font-black block relative bottom-10"
+            >
+                ERROR 404
+            </h1>
+        </div>
     </main>
 </Panel>
 
 <style>
     * {
         font-family: Poppins;
+    }
+    div {
+        transform: perspective(1500px) rotateY(15deg);
+        border-radius: 1rem;
+        /* box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px; */
+        transition: transform 1s ease 0s;
+
+        &:hover {
+            transform: perspective(3000px) rotateY(5deg);
+        }
     }
 </style>

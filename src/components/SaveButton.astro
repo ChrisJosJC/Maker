@@ -1,0 +1,44 @@
+---
+interface Props {
+    film: string;
+    saved: boolean;
+}
+
+const { film, saved = false } = Astro.props;
+
+const ID = Astro.cookies.get("logged").value;
+
+const colorButton = !saved ? "text-carmesi bg-white" : "bg-carmesi text-white";
+---
+
+<i
+    class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 grid place-items-center h-6"
+    class:list={[colorButton]}
+    data-name="icon-to-save"
+    data-user={ID}
+    data-film={film}></i>
+
+<script type="module">
+    import PocketBase from "../../node_modules/pocketbase/dist/pocketbase.es.js";
+
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    // example create data
+
+    document.addEventListener("click", async (e) => {
+        if (e.target.dataset.name === "icon-to-save") {
+            // Add new bookmark
+            const { user, film } = e.target.dataset;
+
+            const data = {
+                user,
+                film,
+            };
+
+            const record = await pb.collection("saved").create(data);
+            e.target.classList.replace("bg-white", "bg-carmesi");
+            e.target.classList.replace("text-carmesi", "text-white");
+            console.log(record);
+        }
+    });
+</script>

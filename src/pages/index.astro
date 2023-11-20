@@ -1,6 +1,5 @@
 ---
 import Panel from "../layouts/Panel.astro";
-import Icon from "astro-icon";
 import Cards from "../components/Cards.astro";
 
 if (!Astro.cookies.has("logged")) return Astro.redirect("/signup", 303);
@@ -15,7 +14,7 @@ const USERNAME = Astro.cookies.get("name").value;
 			<h1 class="text-white text-2xl text-left mb-3">
 				Discover Talents, {USERNAME}
 			</h1>
-			<Cards filter="" />
+			<Cards filter="" category="" />
 		</section>
 		<!-- Categories -->
 		<section class="w-full pl-2 box-border">
@@ -24,44 +23,44 @@ const USERNAME = Astro.cookies.get("name").value;
 				<article
 					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
 				>
-					<Icon name="mdi:trending-up" color="white" width="30px" />
-					<span>Sales</span>
+					<i class="mdi mdi-trending-up mdi-light text-3xl"></i>
+					<a href="/search?category=Sales">Sales</a>
 				</article>
 				<article
 					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
 				>
-					<Icon name="mdi:person" color="white" width="30px" />
-					<span>HR</span>
+					<i class="mdi mdi-account mdi-light text-3xl"></i>
+					<a href="/search?category=Human Resources">HR</a>
 				</article>
 				<article
 					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
 				>
-					<Icon name="mdi:gesture" color="white" width="30px" />
-					<span>Drawing</span>
+					<i class="mdi mdi-gesture mdi-light text-3xl"></i>
+					<a href="/search?category=Drawing">Drawing</a>
 				</article>
 				<article
 					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
 				>
-					<Icon name="mdi:table" color="white" width="30px" />
-					<span>Big data</span>
+					<i class="mdi mdi-table mdi-light text-3xl"></i>
+					<a href="/search?category=Big Data">Big data</a>
 				</article>
 				<article
 					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
 				>
-					<Icon name="mdi:brush" color="white" width="30px" />
-					<span>Design</span>
+					<i class="mdi mdi-brush mdi-light text-3xl"></i>
+					<a href="/search?category=Design">Design</a>
 				</article>
 				<article
 					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
 				>
-					<Icon name="mdi:lightbulb" color="white" width="30px" />
-					<span>Marketing</span>
+					<i class="mdi mdi-lightbulb mdi-light text-3xl"></i>
+					<a href="/search?category=Marketing">Marketing</a>
 				</article>
 				<article
 					class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
 				>
-					<Icon name="mdi:creation" color="white" width="30px" />
-					<span>Astronomy</span>
+					<i class="mdi mdi-creation mdi-light text-3xl"></i>
+					<a href="/search?category=Others">Others</a>
 				</article>
 			</div>
 		</section>
@@ -74,6 +73,8 @@ const USERNAME = Astro.cookies.get("name").value;
 				>
 					<img
 						src="/mountain.jpg"
+						loading="lazy"
+						decoding="async"
 						alt="A camera taking a photo."
 						class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
 					/>
@@ -81,24 +82,20 @@ const USERNAME = Astro.cookies.get("name").value;
 					<div
 						class="flex justify-between flex-col h-full min-h-[100px]"
 					>
-						<Icon
-							name="mdi:bookmark"
-							width="30px"
-							color="white"
-							class="bg-carmesi rounded-full p-1 absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80"
-						/>
+						<i
+							class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-carmesi bg-white h-6 grid place-items-center"
+						></i>
+
 						<h3 class="text-white text-lg w-3/4">
 							Becoming a photographer
 						</h3>
 						<div class="flex justify-between px-2 pl-0">
 							<div class="flex items-center gap-2">
-								<Icon
-									name="mdi:clock-time-twelve"
-									width="20"
-									color="white"
-								/>
+								<i
+									class="mdi mdi-clock-time-twelve text-xl mdi-light"
+								></i>
 								<span class="text-white/70 text-xs"
-									>69% complete</span
+									>29% complete</span
 								>
 							</div>
 						</div>
@@ -109,6 +106,8 @@ const USERNAME = Astro.cookies.get("name").value;
 				>
 					<img
 						src="/design_thinking.jpg"
+						loading="lazy"
+						decoding="async"
 						alt="A camera taking a photo."
 						class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
 					/>
@@ -116,21 +115,18 @@ const USERNAME = Astro.cookies.get("name").value;
 					<div
 						class="flex justify-between flex-col h-full min-h-[100px]"
 					>
-						<Icon
-							name="mdi:bookmark"
-							width="30px"
-							class="bg-white rounded-full p-1 absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80"
-						/>
+						<i
+							class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-carmesi bg-white h-6 grid place-items-center"
+						></i>
+
 						<h3 class="text-white text-lg w-3/4">
 							Design thinking
 						</h3>
 						<div class="flex justify-between px-2 pl-0">
 							<div class="flex items-center gap-2">
-								<Icon
-									name="mdi:clock-time-twelve"
-									width="20"
-									color="white"
-								/>
+								<i
+									class="mdi mdi-clock-time-twelve text-xl mdi-light"
+								></i>
 								<span class="text-white/70 text-xs"
 									>69% complete</span
 								>

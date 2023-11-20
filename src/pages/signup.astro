@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Icon from "astro-icon";
 ---
 
 <Layout title="Sign in to Maker now!">
@@ -34,12 +33,16 @@ import Icon from "astro-icon";
                     for="profile-file"
                     class="w-28 h-28 rounded-full bg-black mt-4 grid place-items-center cursor-pointer hover:scale-95 hover:opacity-70 transition-transform border-carmesi border-0 border-solid -z-0 hover:blur-[1px]"
                 >
-                    <img src="/User.png" id="img-avatar" class="absolute" />
-                    <Icon
-                        name="mdi:add-circle"
-                        width="32px"
-                        class="relative top-8 left-10 text-carmesi font-bold z-20"
+                    <img
+                        loading="lazy"
+                        decoding="async"
+                        src="/User.png"
+                        id="img-avatar"
+                        class="absolute"
                     />
+                    <i
+                        class="mdi mdi-add-circle text-white relative top-8 left-10 bg-carmesi z-20"
+                    ></i>
                 </label>
                 <input
                     type="file"

@@ -5,12 +5,19 @@ interface Props {
     filter?: string;
     sort?: string;
     max?: number;
+    category: string;
+    user?: string;
 }
 
-const { filter, max = 4 } = Astro.props;
-let condition = filter == "" ? "" : `title~"${filter}%"`;
+const { filter = "", max = 4, category = "", user = "" } = Astro.props;
+
+let condition = "";
+if (category != "") condition = `category="${category}"`;
+if (filter != "") condition = `title~"${filter}%"`;
+if (user != "") condition = `posted_by="${user}"`;
 
 const pb = new PocketBase("http://127.0.0.1:8090");
+const ID = Astro.cookies.get("logged").value;
 
 let { items } = await pb.collection("films").getList(1, max, {
     expand: "posted_by",
@@ -21,23 +28,32 @@ let { items } = await pb.collection("films").getList(1, max, {
 
 <div class="talents w-full grid grid-auto-fit gap-3">
     {
-        items.map((record) => (
-            <Card
-                id={record.id}
-                author={record.expand.posted_by.name}
-                title={record.title}
-                time={record.duration}
-                starred={record.starred}
-                author_photo={pb.files.getUrl(
-                    record.expand.posted_by,
-                    record.expand.posted_by.avatar,
-                    { thumb: "100x100" },
-                )}
-                banner={pb.files.getUrl(record, record.banner)}
-            />
-        ))
+        items.map((record) => {
+            return (
+                <Card
+                    id={record.id}
+                    author={record.expand.posted_by.name}
+                    title={record.title}
+                    time={record.duration}
+                    starred={record.starred}
+                    author_photo={pb.files.getUrl(
+                        record.expand.posted_by,
+                        record.expand.posted_by.avatar,
+                        { thumb: "100x100" },
+                    )}
+                    banner={pb.files.getUrl(record, record.banner)}
+                />
+            );
+        })
     }
-    <h2 class="text-white/40 text-xl italic">
-        {items.length == 0 ? "No hay coincidencias..." : ""}
-    </h2>
+
+    {
+        items.length == 0 ? (
+            <h2 class="text-white/40 text-xl italic">
+                No hay coincidencias...
+            </h2>
+        ) : (
+            ""
+        )
+    }
 </div>

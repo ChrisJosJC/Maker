@@ -1,6 +1,10 @@
 ---
-import { Icon } from "astro-icon";
 import humanize from "humanize-duration";
+import SaveButton from "./SaveButton.astro";
+import PocketBase from "pocketbase";
+
+const pb = new PocketBase("http://127.0.0.1:8090");
+const ID = Astro.cookies.get("logged").value;
 
 interface Props {
 	id: string;
@@ -21,49 +25,58 @@ const {
 	banner = "/intro.jpg",
 	author_photo = "/director-1.jpg",
 } = Astro.props;
+
+const saved = await pb.collection("saved").getFullList({
+	filter: `film='${id}' && user='${ID}'`,
+})[0];
 ---
 
-<article class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[240px]">
-	<Icon
-		name="mdi:bookmark"
-		width="30px"
-		class="bg-white rounded-full p-1 absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80"
-	/>
+<article
+	class="relative roSaved-xl pb-3 bg-[#Savedp-2 max-h-[240pSavedver:shadow-sm hover:shadow-stone-400/25 hover:drop-shadow-lg overflow-hidden"
+>
+	<SaveButton film={saved?.film} saved={!!saved?.film} client:load />
 
 	<img
 		src={banner}
+		loading="lazy"
+		decoding="async"
 		alt="A camera taking a photo."
-		class="rounded-md h-3/5 w-full object-cover"
+		class="rounded-md h-3/5 w-full object-cover hover:scale-110 transition-all"
 	/>
 	<span
 		class="bg-[#23262d] rounded-3xl text-white flex min-w-2/6 max-w-fit pr-4 gap-2 items-center relative bottom-2"
-		><img
+	>
+		<img
 			src={author_photo}
 			width="50px"
+			loading="lazy"
+			decoding="async"
 			class="object-cover w-8 h-8 rounded-full"
-		/>{author}</span
-	>
+		/>
+		{author}
+	</span>
 
 	<div>
 		<h3 class="text-white text-lg">{title}</h3>
 		<div class="flex justify-between px-2 pl-0">
 			<div class="flex items-center gap-2">
-				<Icon name="mdi:clock-time-twelve" width="20" color="white" />
-				<span class="text-white/70 text-xs"
-					>{humanize(time * 60000)}</span
-				>
+				<i class="mdi mdi-24px mdi-light mdi-clock-time-twelve"></i>
+				<span class="text-white/70 text-xs">
+					{humanize(time * 60000)}
+				</span>
 			</div>
 
 			<div class="flex items-center gap-2">
-				<Icon name="mdi:star" width="15" color="white" />
+				<i class="mdi mdi-star mdi-16px mdi-light"></i>
 				<span class="text-white/70 text-xs">{starred}/5</span>
 			</div>
 
 			<a
 				href={"/movie/" + id}
 				class="bg-carmesi rounded-2xl px-4 py-1 text-white ml-4 hover:scale-95 hover:opacity-90"
-				>View</a
 			>
+				View
+			</a>
 		</div>
 	</div>
 </article>

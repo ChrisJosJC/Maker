@@ -11,9 +11,9 @@ export const POST = async ({ request, redirect, cookies }) => {
             email,
             password,
         );
-        const { token } = authData
+        const { id } = pb.authStore.model
         const name = authData.record.name
-        cookies.set('logged', token, { path: '/' });
+        cookies.set('logged', id, { path: '/' });
         cookies.set('name', name, { path: '/' });
 
         return redirect('/')

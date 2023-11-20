@@ -4,6 +4,8 @@ import SearchInput from "../components/SearchInput.astro";
 import Cards from "../components/Cards.astro";
 
 const search = Astro.url.searchParams.get("search")! || "";
+const category = Astro.url.searchParams.get("category")! || "";
+const USERNAME = Astro.cookies.get("name").value;
 
 console.log(search);
 ---
@@ -12,11 +14,13 @@ console.log(search);
 	<main class="grid w-full grid-cols-1 pr-12 pb-4 min-h-screen">
 		<!-- Talents -->
 		<section class="w-full p-4 pt-5 pb-0 box-border">
-			<h1 class="text-white text-2xl text-left mb-3">Discover Talent</h1>
+			<h1 class="text-white text-2xl text-left mb-3">
+				Discover Talents, {USERNAME}
+			</h1>
 
 			<SearchInput value={search} />
 
-			<Cards filter={search} max={30} />
+			<Cards filter={search} max={30} category={category} />
 		</section>
 	</main>
 </Panel>

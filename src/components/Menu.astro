@@ -1,53 +1,55 @@
 ---
 import { Icon } from "astro-icon";
+import "@mdi/font/css/materialdesignicons.min.css";
 ---
 
 <aside
     class="flex flex-col items-center gap-6 w-20 bg-[#222] p-2 h-screen rounded-e-sm sticky top-0"
 >
-    <img src="/favicon.png" width="28" class="mb-3 mt-4" />
+    <img
+        loading="lazy"
+        decoding="async"
+        src="/favicon.png"
+        width="28"
+        class="mb-3 mt-4"
+    />
 
     <div class="flex flex-col gap-4">
         <a
             href="/"
             class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
         >
-            <Icon name="mdi:home" width="25px" color="white" />Home</a
+            <i class="mdi mdi-home mdi-24px text-white"></i>Home</a
         >
         <a
             href="/search"
             class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
         >
-            <Icon name="mdi:magnify" width="25px" color="white" />Search</a
+            <i class="mdi mdi-magnify mdi-24px text-white"></i>Search</a
         >
         <a
             href="/projects"
             class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
         >
-            <Icon
-                name="mdi:play-circle"
-                width="25px"
-                color="white"
-            />Projects</a
+            <i class="mdi mdi-play-circle mdi-24px text-white"></i>Projects</a
         >
         <a
-            href="/search"
+            href="/learning"
             class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
         >
-            <Icon name="mdi:bookmark" width="25px" color="white" />Saved</a
+            <i class="mdi mdi-bookmark mdi-24px text-white"></i>Saved</a
         >
         <a
-            href="/profile"
+            href="/account"
             class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
         >
-            <Icon name="mdi:account" width="25px" color="white" />Profile</a
+            <i class="mdi mdi-account mdi-24px text-white"></i>Profile</a
         >
         <a
             href="/api/logout.json"
             class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform hover:text-carmesi"
         >
-            <Icon name="mdi:exit-to-app" width="24px" class="text-inherit" />Log
-            out</a
+            <i class="mdi mdi-logout mdi-24px text-current"></i>Log out</a
         >
     </div>
 </aside>
