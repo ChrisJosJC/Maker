@@ -6,7 +6,6 @@ import PocketBase from "pocketbase";
 const pb = new PocketBase("https://makerly.pockethost.io/");
 
 const { value: ID } = Astro.cookies.get("logged");
-console.log(ID);
 
 const item = await pb.collection("users").getOne(ID);
 ---
