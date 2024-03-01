@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('https://makerly.pockethost.io/');
 export const POST = async ({ request, redirect, cookies }) => {
     const data = await request.formData()
 
@@ -11,7 +11,8 @@ export const POST = async ({ request, redirect, cookies }) => {
             email,
             password,
         );
-        const { id } = pb.authStore.model
+
+        const id = authData.record.id
         const name = authData.record.name
         cookies.set('logged', id, { path: '/' });
         cookies.set('name', name, { path: '/' });

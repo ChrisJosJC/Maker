@@ -1,0 +1,123 @@
+---
+export const prerender = false;
+import Panel from "../../layouts/Panel.astro";
+import PocketBase from "pocketbase";
+import humanize from "humanize-duration";
+
+const { ID } = Astro.params;
+const IDUser = Astro.cookies.get('logged').value;
+
+const pb = new PocketBase("https://makerly.pockethost.io/");
+
+let item = await pb.collection("films").getOne(ID, { expand: "posted_by" });
+const isTheOwner = IDUser === item.expand.posted_by.id
+
+if (item?.code === 404) return Astro.redirect("/404");
+---
+
+<Panel title={item.title + " in Maker"}>
+    <main
+        class="grid min-h-full box-border grid-auto-fit-md gap-2 snap-y snap-proximity snap-center"
+    >
+        <i class="blur-md hidden"></i>
+        <div class="h-screen w-full">
+            <span
+                class="flex flex-col md:hidden justify-center items-center mt-2 font-poppins font-semibold italic text-white"
+                >Mira hacia abajo... <i
+                    class="mdi text-2xl mdi-arrow-down animate-bounce"
+                ></i></span
+            >
+            <img
+                id="banner"
+                loading="lazy"
+                decoding="async"
+                src={pb.files.getUrl(item, item.banner)}
+                class="object-cover object-center w-full h-full shadow-inner shadow-black fixed top-0 -z-20 md:blur-none md:relative"
+            />
+        </div>
+        <div class="pl-4 pb-4 max-md:bg-black/40 max:md:backdrop:blur-sm">
+            <a
+                href={"/profile/" + item.expand.posted_by.id}
+                class="bg-[#23262d] rounded-3xl text-white flex min-w-2/6 w-9/12 pr-4 gap-2 items-center mt-4 font-poppins font-semibold hover:-translate-x-2 hover:scale-95 transition-transform"
+            >
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src={pb.files.getUrl(
+                        item.expand.posted_by,
+                        item.expand.posted_by.avatar,
+                        { thumb: "100x100" },
+                    )}
+                    class="object-cover w-10 h-10 rounded-full"
+                />{item.expand.posted_by.name}
+            </a>
+            <h1
+                id="title"
+                class="text-6xl font-poppins font-black mt-4 mb-2 text-carmesi animate-pulse"
+            >
+                {item.title}
+            </h1>
+            <p class="text-white font-poppins mb-2">{item.description}</p>
+
+            <div
+                class="flex justify-between md:gap-2 md:mt-4 pr-10 gap-5 w-full"
+            >
+                <div class="flex items-center gap-2">
+                    <i class="mdi text-2xl mdi-table text-carmesi"></i>
+                    <span class="text-white/70 text-xs">{item.category}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="mdi text-2xl mdi-star text-yellow-400"></i>
+                    <span class="text-white/70 text-xs">{item.starred}/5</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="mdi text-2xl mdi-clock-time-twelve text-white"
+                    ></i>
+                    <span class="text-white/70 text-xs"
+                        >{humanize(item.duration * 60000)}</span
+                    >
+                </div>
+            </div>
+            {isTheOwner && (
+                            <div class="flex w-full gap-1 my-4">
+                <a
+                    href=`/film/edit/${item.id}`
+                    class="bg-white text-carmesi font-bold py-2 rounded-md w-full pl-2 hover:bg-carmesi hover:text-white hover:animate-pulse"
+                    >Editar</a
+                >
+                <a
+                    href=`/film/${item.id}.json`
+                    class="bg-white text-carmesi font-bold py-2 rounded-md w-full pl-2 hover:bg-carmesi hover:text-white hover:animate-pulse deleteBtn"
+                    >Eliminar</a
+                >
+            </div>
+            )}
+        </div>
+    </main>
+</Panel>
+
+<script>
+    const $ = (el) => document.querySelector(el);
+
+    window.addEventListener("scroll", (e) => {
+        if (window.scrollY >= 80) {
+            $("#banner").classList.add("blur-md");
+        } else {
+            $("#banner").classList.remove("blur-md");
+        }
+    });
+
+    $(".deleteBtn").addEventListener("click", (e)=>{
+        e.preventDefault()
+        const URLTOFETCH = e.target.href
+        fetch(URLTOFETCH, {
+            method: "DELETE",
+        }).then(res => res.json())
+        .then(data=>{
+            const {code}=data
+            location.href=location.origin+`?code=${code}`
+        })
+        .catch(e=>console.log(e))
+        
+    })
+</script>

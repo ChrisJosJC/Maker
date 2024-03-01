@@ -1,14 +1,16 @@
 ---
 import Card from "../components/Card.astro";
 import PocketBase from "pocketbase";
+import Sponsor from "./Sponsor.astro";
 interface Props {
-    filter?: string;
-    sort?: string;
-    max?: number;
-    category: string;
-    user?: string;
+  filter?: string;
+  sort?: string;
+  max?: number;
+  category: string;
+  user?: string;
 }
-
+const isAccountPage = Astro.request.url.includes("/account");
+const isProfilePage = Astro.request.url.includes("/profile");
 const { filter = "", max = 4, category = "", user = "" } = Astro.props;
 
 let condition = "";
@@ -16,44 +18,89 @@ if (category != "") condition = `category="${category}"`;
 if (filter != "") condition = `title~"${filter}%"`;
 if (user != "") condition = `posted_by="${user}"`;
 
-const pb = new PocketBase("http://127.0.0.1:8090");
-const ID = Astro.cookies.get("logged").value;
+const pb = new PocketBase("https://makerly.pockethost.io/");
 
 let { items } = await pb.collection("films").getList(1, max, {
-    expand: "posted_by",
-    filter: condition,
-    sort: "-starred",
+  expand: "posted_by",
+  filter: condition,
+  sort: "-starred",
 });
 ---
 
-<div class="talents w-full grid grid-auto-fit gap-3">
-    {
-        items.map((record) => {
-            return (
-                <Card
-                    id={record.id}
-                    author={record.expand.posted_by.name}
-                    title={record.title}
-                    time={record.duration}
-                    starred={record.starred}
-                    author_photo={pb.files.getUrl(
-                        record.expand.posted_by,
-                        record.expand.posted_by.avatar,
-                        { thumb: "100x100" },
-                    )}
-                    banner={pb.files.getUrl(record, record.banner)}
-                />
-            );
-        })
-    }
-
-    {
-        items.length == 0 ? (
-            <h2 class="text-white/40 text-xl italic">
-                No hay coincidencias...
-            </h2>
-        ) : (
-            ""
-        )
-    }
+<div
+  class:list={[
+    "talents w-full grid gap-3",
+    isAccountPage || isProfilePage
+      ? "md:grid-cols-2 md:grid-cols-2"
+      : "grid-auto-fit",
+  ]}
+>
+  {
+    items.map((record) => {
+      return (
+        <Card
+          id={record.id}
+          author={record.expand.posted_by.name}
+          desc={record.description}
+          title={record.title}
+          time={record.duration}
+          starred={record.starred}
+          author_photo={pb.files.getUrl(
+            record.expand.posted_by,
+            record.expand.posted_by.avatar,
+            { thumb: "100x100" }
+          )}
+          banner={pb.files.getUrl(record, record.banner)}
+          max_height={max <= 4}
+        />
+      );
+    })
+  }
+  {
+    items.length == 0 ? (
+      <h2 class="text-white/40 text-xl italic">No hay coincidencias...</h2>
+    ) : (
+      ""
+    )
+  }
 </div>
+
+<script type="module">
+  import PocketBase from "../../node_modules/pocketbase/dist/pocketbase.es.js";
+
+  const pb = new PocketBase("https://makerly.pockethost.io/");
+
+  const ID = document.cookie.split(";")[0].split("=")[1];
+
+  // example create data
+
+  document.addEventListener("click", async (e) => {
+    if (e.target.dataset.name === "icon-to-save") {
+      const { user, film } = e.target.dataset;
+
+      const data = {
+        user,
+        film,
+      };
+
+      const saved = await pb.collection("saved").getFullList({
+        filter: `film='${film}' && user='${ID}'`,
+      });
+
+      console.log(saved[0]);
+      if (saved[0] !== undefined) {
+        const SAVED_ID = saved[0].id;
+        console.log(SAVED_ID);
+        const res = await pb.collection("saved").delete(SAVED_ID);
+        e.target.classList.replace("bg-carmesi", "bg-white");
+        e.target.classList.replace("text-white", "text-carmesi");
+        console.log(res);
+      } else {
+        const record = await pb.collection("saved").create(data);
+        e.target.classList.replace("bg-white", "bg-carmesi");
+        e.target.classList.replace("text-carmesi", "text-white");
+        console.log(record);
+      }
+    }
+  });
+</script>

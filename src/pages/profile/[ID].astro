@@ -5,7 +5,7 @@ import { format } from "timeago.js";
 import PocketBase from "pocketbase";
 import Cards from "../../components/Cards.astro";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://makerly.pockethost.io/");
 const { ID } = Astro.params;
 
 const item = await pb.collection("users").getOne(ID);
@@ -13,63 +13,61 @@ const USERNAME = item.username;
 ---
 
 <Panel title={USERNAME + " in Maker"}>
-    <main
-        class="grid min-h-full box-border grid-auto-fit-md gap-2 snap-y snap-proximity snap-center pr-4"
-    >
-        <i class="blur-md hidden"></i>
-        <div class="h-screen w-full">
-            <span
-                class="flex flex-col md:hidden justify-center items-center mt-2 font-poppins font-semibold italic text-white text-shadow"
-                >Mira hacia abajo... <i
-                    class="mdi mdi-arrow-down mdi-light animate-bounce"
-                ></i></span
-            >
-            <img
-                id="banner"
-                loading="lazy"
-                decoding="async"
-                src={pb.files.getUrl(item, item.avatar)}
-                class="object-cover object-center w-full h-full shadow-inner shadow-black fixed top-0 -z-20 md:blur-none md:relative"
-            />
-        </div>
-        <div class="pl-4 py-4 max-md:bg-black/40 max:md:backdrop:blur-sm">
-            <span class="text-white/40 font-poppins pt-4">@{item.username}</span
-            >
-            <h1
-                id="title"
-                class="text-6xl font-poppins font-black mb-4 text-carmesi animate-pulse"
-            >
-                {item.name}
-            </h1>
-            <p class="text-white font-poppins">{item.email}</p>
-            <h2 class="text-white text-xl font-bold mb-2">Recent projects</h2>
-            <Cards user={ID} filter="" category="" />
-        </div>
-    </main>
+  <main
+    class="grid min-h-full box-border grid-auto-fit-md gap-2 snap-y snap-proximity snap-center pr-4"
+  >
+    <i class="blur-md hidden"></i>
+    <div class="h-screen w-full">
+      <span
+        class="flex flex-col md:hidden justify-center items-center mt-2 font-poppins font-semibold italic text-white text-shadow"
+        >Mira hacia abajo... <i
+          class="mdi mdi-arrow-down mdi-light animate-bounce"></i></span
+      >
+      <img
+        id="banner"
+        loading="lazy"
+        decoding="async"
+        src={pb.files.getUrl(item, item.avatar)}
+        class="object-cover object-center w-full h-full shadow-inner shadow-black fixed top-0 -z-20 md:blur-none md:relative"
+      />
+    </div>
+    <div class="pl-4 py-4 max-md:bg-black/40 max:md:backdrop:blur-sm">
+      <span class="text-white/40 font-poppins pt-4">@{item.username}</span>
+      <h1
+        id="title"
+        class="text-6xl font-poppins font-black mb-4 text-carmesi animate-pulse"
+      >
+        {item.name}
+      </h1>
+      <p class="text-white font-poppins">{item.email}</p>
+      <h2 class="text-white text-xl font-bold mb-2">Recent projects</h2>
+      <Cards user={ID} filter="" category="" />
+    </div>
+  </main>
 
-    <style>
-        .text-shadow {
-            text-shadow:
-                2px 0 #000,
-                -2px 0 #000,
-                0 2px #000,
-                0 -2px #000,
-                1px 1px #000,
-                -1px -1px #000,
-                1px -1px #000,
-                -1px 1px #000;
-        }
-    </style>
+  <style>
+    .text-shadow {
+      text-shadow:
+        2px 0 #000,
+        -2px 0 #000,
+        0 2px #000,
+        0 -2px #000,
+        1px 1px #000,
+        -1px -1px #000,
+        1px -1px #000,
+        -1px 1px #000;
+    }
+  </style>
 
-    <script>
-        const $ = (el) => document.querySelector(el);
+  <script>
+    const $ = (el) => document.querySelector(el);
 
-        window.addEventListener("scroll", (e) => {
-            if (window.scrollY >= 80) {
-                $("#banner").classList.add("blur-md");
-            } else {
-                $("#banner").classList.remove("blur-md");
-            }
-        });
-    </script>
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY >= 80) {
+        $("#banner").classList.add("blur-md");
+      } else {
+        $("#banner").classList.remove("blur-md");
+      }
+    });
+  </script>
 </Panel>

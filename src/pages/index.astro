@@ -1,8 +1,17 @@
 ---
+export const prerender = false;
 import Panel from "../layouts/Panel.astro";
 import Cards from "../components/Cards.astro";
 
 if (!Astro.cookies.has("logged")) return Astro.redirect("/signup", 303);
+const status = Astro.url.searchParams.get("code");
+let message = "Successful operation";
+
+if (status != null) {
+	if (status === "400")
+		message = "Failed to delete record. Try again in a few minutes.";
+	if (status === "404") message = "The requested resource wasn't found.";
+}
 
 const USERNAME = Astro.cookies.get("name").value;
 ---
@@ -137,10 +146,41 @@ const USERNAME = Astro.cookies.get("name").value;
 			</div>
 		</section>
 	</main>
+	{
+		status !== null && (
+			<div
+				class:list={[
+					status === "404" || status === "400"
+						? "fixed bottom-4 left-[38%] p-4 mb-4 text-sm text-red-800 rounded-lg bg-gray-800 dark:bg-red-50 dark:text-red-600 dissapear z-50"
+						: "fixed bottom-4 left-[43%] p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dissapear z-50",
+				]}
+				role="alert"
+			>
+				<span class="font-medium">Alert! </span> {message}
+			</div>
+		)
+	}
 </Panel>
 
 <style>
 	* {
 		font-family: Poppins;
+	}
+	.dissapear {
+		animation: dissapear 1s ease-out forwards;
+		animation-delay: 2s;
+		transition: all 1s;
+	}
+
+	@keyframes dissapear {
+		0% {
+			display: block;
+		}
+		to {
+			display: none;
+			translate: 0 100px;
+			scale: 0.9;
+			opacity: 0;
+		}
 	}
 </style>

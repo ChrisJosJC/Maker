@@ -1,0 +1,49 @@
+---
+import humanize from "humanize-duration";
+import SaveButton from "./SaveButton.astro";
+import PocketBase from "pocketbase";
+
+const pb = new PocketBase("https://makerly.pockethost.io/");
+const ID = Astro.cookies.get("logged").value;
+
+interface Props {
+  title: string;
+  banner: string;
+  max_height?: boolean;
+}
+
+const {
+  title = "SM Iluminations",
+  banner = "/intro.jpg",
+  max_height = true,
+} = Astro.props;
+---
+
+<article
+  class:list={[
+    "relative rounded-xl pb-3 bg-[#222] p-2 hover:shadow-sm hover:shadow-stone-400/25 hover:drop-shadow-lg overflow-hidden bg-cover",
+    `${
+      max_height
+        ? `max-h-[240px] bg-[url('${banner}')]`
+        : "h-[400px] flex flex-col"
+    }`,
+  ]}
+>
+  <div>
+    <i class="hidden bg-[url('/sponsor-one.jpg')]"></i>
+    <span
+      class="bg-[#23262d] rounded-3xl text-white flex min-w-2/6 max-w-fit pr-4 gap-2 items-center relative bottom-2"
+    >
+      <h3 class="text-white text-2xl italic font-extrabold flex">{title}</h3>
+      {
+        !max_height ? (
+          <p class="text-white/40 text-sm text-ellipsis overflow-hidden line-clamp-2 italic mb-3">
+            <slot />
+          </p>
+        ) : (
+          ""
+        )
+      }
+    </span>
+  </div>
+</article>

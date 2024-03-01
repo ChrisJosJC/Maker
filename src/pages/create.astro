@@ -1,0 +1,150 @@
+---
+import Panel from "../layouts/Panel.astro";
+import PocketBase from "pocketbase";
+
+const pb = new PocketBase("https://makerly.pockethost.io/");
+
+const USERNAME = Astro.cookies.get("name").value;
+const ID = Astro.cookies.get("logged").value;
+
+const item = await pb.collection("users").getOne(ID);
+---
+
+<Panel title={"Creating new project in Maker"}>
+  <form
+    action="/api/create.json"
+    method="post"
+    enctype="multipart/form-data"
+    class="grid min-h-full sm:max-h-screen box-border grid-auto-fit-md gap-2 snap-y snap-proximity snap-center"
+  >
+    <i class="blur-md hidden"></i>
+    <div class="h-screen w-full upload relative">
+      <input
+        type="file"
+        name="banner"
+        id="banner"
+        accept="image/*"
+        class="hidden"
+      />
+      <img
+        class="object-cover object-center w-full h-full shadow-inner shadow-black absolute md:blur-none"
+        id="img-banner"
+        src="/;lvizdmountain.jpg"
+      />
+      <label
+        for="banner"
+        id="label-banner"
+        class="flex flex-col justify-center items-center h-[98%] shadow-inner shadow-black -z-10 md:blur-none m-2 border-4 border-dashed hover:bg-black/40 border-carmesi box-border rounded-md top-0 hover:backdrop-blur-sm hover:opacity-100 opacity-0 transition-all"
+      >
+        <img src="/claqueta.png" class="w-3/6" />
+        <h3 class="text-white text-3xl font-extrabold">Change banner</h3>
+      </label>
+    </div>
+    <div class="pl-4 pb-4 max-md:bg-black/40 max:md:backdrop:blur-sm">
+      <a
+        href={"/profile/" + item.id}
+        class="bg-[#23262d] rounded-3xl text-white flex min-w-2/6 w-9/12 pr-4 gap-2 items-center mt-4 font-poppins font-semibold hover:-translate-x-2 hover:scale-95 transition-transform"
+      >
+        <img
+          loading="lazy"
+          decoding="async"
+          src={pb.files.getUrl(item, item.avatar, {
+            thumb: "100x100",
+          })}
+          class="object-cover w-10 h-10 rounded-full"
+        />{item.name}
+      </a>
+      <input
+        id="title"
+        placeholder="Film name"
+        name="title"
+        class="block bg-transparent outline-none border-white border-solid border-b-2 font-poppins font-black mt-4 mb-2 text-carmesi animate-pulse w-full"
+      />
+      <textarea
+        class="text-white p-2 rounded-md outline-none min-h-[200px] bg-white/20 backdrop:blur-sm w-5/6 resize-none block font-poppins mb-2"
+        id="desc"
+        name="desc"
+        placeholder="Describe your film"></textarea>
+
+      <div class="flex flex-col justify-between md:gap-2 md:mt-4 gap-5 w-full">
+        <select
+          id="category"
+          name="category"
+          class="w-10/12 py-2 px-3 pr-2 rounded-sm bg-white/20 font-bold text-white"
+        >
+          <option value="">Select the category</option>
+          <option value="Sales">Sales</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Drawing">Drawing</option>
+          <option value="Big Data">Big Data</option>
+          <option value="Design">Design</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Others">Others</option>
+        </select>
+        <input
+          type="number"
+          id="duration"
+          name="duration"
+          placeholder="Duration film (in minutes)"
+          class="w-10/12 py-2 px-3 pr-2 rounded-sm bg-white/20 text-white font-bold"
+        />
+        <button
+          class="text-white font-bold bg-carmesi py-2 w-10/12 rounded-md hover:scale-95 transition-transform"
+          >Upload film</button
+        >
+      </div>
+    </div>
+  </form>
+</Panel>
+
+<script>
+  const $ = (el) => document.querySelector(el);
+  const id = (el) => document.getElementById(el);
+
+  window.addEventListener("scroll", (e) => {
+    if (window.scrollY >= 80) {
+      $("#banner").classList.add("blur-md");
+    } else {
+      $("#banner").classList.remove("blur-md");
+    }
+  });
+
+  id("banner").onchange = (e) => {
+    const [file] = $("#banner").files;
+    if (file) {
+      let img = id("img-banner");
+
+      img.src = URL.createObjectURL(file);
+      // img.className = "w-28 h-28 object-cover rounded-full absolute";
+    }
+  };
+</script>
+
+<style>
+  .upload {
+    transform: perspective(1500px) rotateY(15deg);
+    border-radius: 1rem;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px; */
+    transition:
+      transform 1s ease 100ms,
+      filter 3s ease-in-out;
+  }
+  .upload:hover {
+    transform: perspective(3000px) rotateY(5deg);
+  }
+  option:checked,
+  option:hover,
+  option {
+    backdrop-filter: blur(4px);
+    background-color: #000000da;
+  }
+
+  option:focus {
+    background-color: #000000da;
+    color: white;
+  }
+
+  #title {
+    font-size: clamp(3.75rem, 2rem, 1rem);
+  }
+</style>

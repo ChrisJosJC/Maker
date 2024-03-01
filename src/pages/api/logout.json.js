@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase';
 
 export const GET = async ({ redirect, cookies }) => {
-    const pb = new PocketBase('http://127.0.0.1:8090');
+    const pb = new PocketBase('https://makerly.pockethost.io/');
 
     await cookies.delete('name', { path: '/' })
     await cookies.delete('logged', { path: '/' })

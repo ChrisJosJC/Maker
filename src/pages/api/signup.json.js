@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('https://makerly.pockethost.io/');
 
 
 export const POST = async ({ request, redirect, cookies }) => {
@@ -30,7 +30,6 @@ export const POST = async ({ request, redirect, cookies }) => {
         const { id, USERNAME } = record
         cookies.set('logged', id, { path: '/' });
         cookies.set('name', USERNAME, { path: '/' });
-        console.log(data);
 
         return redirect('/')
     } catch (e) {

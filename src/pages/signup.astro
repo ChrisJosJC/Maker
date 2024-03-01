@@ -3,201 +3,194 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Sign in to Maker now!">
-    <main
-        class="bg-stone-900 w-2/4 rounded-lg py-4 px-3 flex flex-col items-center max-w-sm min-h-max pb-8 max-sm:w-3/4 transition-all"
+  <main
+    class="bg-stone-900 w-2/4 rounded-lg py-4 px-3 flex flex-col items-center max-w-sm min-h-max pb-8 max-sm:w-3/4 transition-all"
+  >
+    <ul class="grid grid-cols-2 w-full gap-1 my-2">
+      <li class="h-1 rounded-lg bg-white w-full block"></li>
+      <li class="h-1 rounded-lg bg-white/20 w-full block" id="two-bar"></li>
+    </ul>
+
+    <a
+      href="/"
+      class="text-xs opacity-60 text-right w-full mr-4 p-0 m-0 cursor-pointer hover:opacity-100 transition-all text-white"
+      >Skip</a
     >
-        <ul class="grid grid-cols-2 w-full gap-1 my-2">
-            <li class="h-1 rounded-lg bg-white w-full block"></li>
-            <li class="h-1 rounded-lg bg-white/20 w-full block" id="two-bar">
-            </li>
-        </ul>
 
-        <a
-            href="/"
-            class="text-xs opacity-60 text-right w-full mr-4 p-0 m-0 cursor-pointer hover:opacity-100 transition-all text-white"
-            >Skip</a
+    <h1 class="text-3xl font-bold text-center w-full text-white">
+      Become in a Maker
+    </h1>
+    <form
+      action="/api/signup.json"
+      method="post"
+      enctype="multipart/form-data"
+      class="flex flex-col items-center w-full"
+    >
+      <div class="flex flex-col">
+        <label
+          id="label-avatar"
+          for="profile-file"
+          class="w-28 h-28 rounded-full bg-black mt-4 grid place-items-center cursor-pointer hover:scale-95 hover:opacity-70 transition-transform border-carmesi border-0 border-solid -z-0 hover:blur-[1px]"
         >
+          <img
+            loading="lazy"
+            decoding="async"
+            src="/User.png"
+            id="img-avatar"
+            class="absolute"
+          />
+          <i
+            class="mdi mdi-add-circle text-white relative top-8 left-10 bg-carmesi z-20"
+          ></i>
+        </label>
+        <input
+          type="file"
+          name="profile-file"
+          id="profile-file"
+          class="hidden"
+          accept="image/*"
+          value="/User.png"
+        />
+      </div>
+      <div id="form-one" class="flex flex-col items-center w-full">
+        <div class="flex flex-col text-white w-3/4">
+          <label for="fullname" class="text-xs mt-2 ml-2">Full name</label>
+          <input
+            type="text"
+            id="fullname"
+            name="name"
+            placeholder="Enter your full name"
+            class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm placeholder:text-sm"
+          />
+        </div>
 
-        <h1 class="text-3xl font-bold text-center w-full text-white">
-            Become in a Maker
-        </h1>
-        <form
-            action="/api/signup.json"
-            method="post"
-            enctype="multipart/form-data"
-            class="flex flex-col items-center w-full"
-        >
-            <div class="flex flex-col">
-                <label
-                    id="label-avatar"
-                    for="profile-file"
-                    class="w-28 h-28 rounded-full bg-black mt-4 grid place-items-center cursor-pointer hover:scale-95 hover:opacity-70 transition-transform border-carmesi border-0 border-solid -z-0 hover:blur-[1px]"
-                >
-                    <img
-                        loading="lazy"
-                        decoding="async"
-                        src="/User.png"
-                        id="img-avatar"
-                        class="absolute"
-                    />
-                    <i
-                        class="mdi mdi-add-circle text-white relative top-8 left-10 bg-carmesi z-20"
-                    ></i>
-                </label>
-                <input
-                    type="file"
-                    name="profile-file"
-                    id="profile-file"
-                    class="hidden"
-                    accept="image/*"
-                />
-            </div>
-            <div id="form-one" class="flex flex-col items-center w-full">
-                <div class="flex flex-col text-white w-3/4">
-                    <label for="fullname" class="text-xs mt-2 ml-2"
-                        >Full name</label
-                    >
-                    <input
-                        type="text"
-                        id="fullname"
-                        name="name"
-                        placeholder="Enter your full name"
-                        class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm placeholder:text-sm"
-                    />
-                </div>
+        <div class="flex flex-col text-white w-3/4">
+          <label for="username" class="text-xs mt-2 ml-2">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Create your username"
+            class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
+          />
+        </div>
 
-                <div class="flex flex-col text-white w-3/4">
-                    <label for="username" class="text-xs mt-2 ml-2"
-                        >Username</label
-                    >
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Create your username"
-                        class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
-                    />
-                </div>
+        <div class="flex flex-col text-white w-3/4">
+          <label for="location" class="text-xs mt-2 ml-2">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="e-mail"
+            placeholder="Enter your email"
+            class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
+          />
+        </div>
+      </div>
+      <div id="form-two" class="hidden flex-col items-center w-full">
+        <div class="flex flex-col text-white w-3/4">
+          <label for="password" class="text-xs mt-2 ml-2">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter a high level password"
+            class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm placeholder:text-sm"
+          />
+        </div>
 
-                <div class="flex flex-col text-white w-3/4">
-                    <label for="location" class="text-xs mt-2 ml-2">Email</label
-                    >
-                    <input
-                        type="email"
-                        id="email"
-                        name="e-mail"
-                        placeholder="Enter your email"
-                        class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
-                    />
-                </div>
-            </div>
-            <div id="form-two" class="hidden flex-col items-center w-full">
-                <div class="flex flex-col text-white w-3/4">
-                    <label for="password" class="text-xs mt-2 ml-2"
-                        >Password</label
-                    >
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Enter a high level password"
-                        class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm placeholder:text-sm"
-                    />
-                </div>
-
-                <div class="flex flex-col text-white w-3/4">
-                    <label for="password" class="text-xs mt-2 ml-2"
-                        >Confirm password</label
-                    >
-                    <input
-                        type="password"
-                        id="confirm-password"
-                        placeholder="Confirm your password"
-                        class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
-                    />
-                </div>
-            </div>
-            <div class="flex gap-2 mt-4 w-3/4">
-                <button
-                    id="back"
-                    type="button"
-                    class="bg-white text-black rounded-2xl text-xs w-full px-2 py-2 block font-bold disabled:opacity-20"
-                    disabled
-                    >Back
-                </button>
-                <button
-                    id="next"
-                    type="button"
-                    class="bg-carmesi text-white rounded-2xl text-xs w-full px-2 block font-bold"
-                    >Next
-                </button>
-            </div>
-        </form>
-        <a
-            href="/login"
-            class="text-white/70 text-xs mt-4 mb-0 hover:text-white p-0"
-            >Already have an account?</a
-        >
-    </main>
+        <div class="flex flex-col text-white w-3/4">
+          <label for="password" class="text-xs mt-2 ml-2"
+            >Confirm password</label
+          >
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirm your password"
+            class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
+          />
+        </div>
+      </div>
+      <div class="flex gap-2 mt-4 w-3/4">
+        <button
+          id="back"
+          type="button"
+          class="bg-white text-black rounded-2xl text-xs w-full px-2 py-2 block font-bold disabled:opacity-20"
+          disabled
+          >Back
+        </button>
+        <button
+          id="next"
+          type="button"
+          class="bg-carmesi text-white rounded-2xl text-xs w-full px-2 block font-bold"
+          >Next
+        </button>
+      </div>
+    </form>
+    <a
+      href="/login"
+      class="text-white/70 text-xs mt-4 mb-0 hover:text-white p-0"
+      >Already have an account?</a
+    >
+  </main>
 </Layout>
 
 <script>
-    const $ = (el) => document.querySelector(el);
-    const id = (el) => document.getElementById(el);
+  const $ = (el) => document.querySelector(el);
+  const id = (el) => document.getElementById(el);
 
-    let toggleSubmit = false;
-    id("next").addEventListener("click", () => {
-        id("back").disabled = false;
-        id("form-one").classList.add("hidden");
-        id("form-two").classList.remove("hidden");
-        id("form-two").classList.add("flex");
-        id("two-bar").classList.replace("bg-white/20", "bg-white");
+  let toggleSubmit = false;
+  id("next").addEventListener("click", () => {
+    id("back").disabled = false;
+    id("form-one").classList.add("hidden");
+    id("form-two").classList.remove("hidden");
+    id("form-two").classList.add("flex");
+    id("two-bar").classList.replace("bg-white/20", "bg-white");
 
-        id("next").textContent = "Start";
-        if (toggleSubmit) id("next").type = "submit";
-        toggleSubmit = true;
-    });
-    id("back").addEventListener("click", () => {
-        id("back").disabled = true;
-        id("form-two").classList.add("hidden");
-        id("form-one").classList.remove("hidden");
-        id("two-bar").classList.replace("bg-white", "bg-white/20");
-        id("next").textContent = "Next";
-        id("next").type = "button";
-        toggleSubmit = false;
-    });
+    id("next").textContent = "Start";
+    if (toggleSubmit) id("next").type = "submit";
+    toggleSubmit = true;
+  });
+  id("back").addEventListener("click", () => {
+    id("back").disabled = true;
+    id("form-two").classList.add("hidden");
+    id("form-one").classList.remove("hidden");
+    id("two-bar").classList.replace("bg-white", "bg-white/20");
+    id("next").textContent = "Next";
+    id("next").type = "button";
+    toggleSubmit = false;
+  });
 
-    id("profile-file").onchange = (e) => {
-        const [file] = $("#profile-file").files;
-        if (file) {
-            let img = id("img-avatar");
-            img.src = URL.createObjectURL(file);
-            img.className = "w-28 h-28 object-cover rounded-full absolute";
-        }
-    };
+  id("profile-file").onchange = (e) => {
+    const [file] = $("#profile-file").files;
+    if (file) {
+      let img = id("img-avatar");
+      img.src = URL.createObjectURL(file);
+      img.className = "w-28 h-28 object-cover rounded-full absolute";
+    }
+  };
 
-    id("confirm-password").addEventListener("keyup", () => {
-        if (id("confirm-password").value === id("password").value) {
-            id("confirm-password").style.border = "1px solid green";
-        } else {
-            id("confirm-password").style.border = "1px solid red";
-        }
-    });
+  id("confirm-password").addEventListener("keyup", () => {
+    if (id("confirm-password").value === id("password").value) {
+      id("confirm-password").style.border = "1px solid green";
+    } else {
+      id("confirm-password").style.border = "1px solid red";
+    }
+  });
 </script>
 
 <style>
-    * {
-        font-family: Poppins;
-    }
-    body {
-        display: grid;
-        place-items: center;
-        background-image: url("/moon_bg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        backdrop-filter: blur(20px);
-        height: 100vh;
-    }
+  * {
+    font-family: Poppins;
+  }
+  body {
+    display: grid;
+    place-items: center;
+    background-image: url("/mountain.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(20px);
+    height: 100vh;
+  }
 </style>
