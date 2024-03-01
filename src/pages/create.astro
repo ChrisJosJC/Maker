@@ -1,11 +1,12 @@
 ---
+export const prerender = false;
 import Panel from "../layouts/Panel.astro";
 import PocketBase from "pocketbase";
 
 const pb = new PocketBase("https://makerly.pockethost.io/");
 
-const USERNAME = Astro.cookies.get("name").value;
-const ID = Astro.cookies.get("logged").value;
+const { value: ID } = Astro.cookies.get("logged");
+console.log(ID);
 
 const item = await pb.collection("users").getOne(ID);
 ---

@@ -1,4 +1,5 @@
 ---
+export const prerender = false;
 import Panel from "../layouts/Panel.astro";
 import SearchInput from "../components/SearchInput.astro";
 import Cards from "../components/Cards.astro";
@@ -11,22 +12,22 @@ console.log(search);
 ---
 
 <Panel title="Looking for your Maker now">
-	<main class="grid w-full grid-cols-1 pr-12 pb-4 min-h-screen">
-		<!-- Talents -->
-		<section class="w-full p-4 pt-5 pb-0 box-border">
-			<h1 class="text-white text-2xl text-left mb-3">
-				Discover Talents, {USERNAME}
-			</h1>
+  <main class="grid w-full grid-cols-1 pr-12 pb-4 min-h-screen">
+    <!-- Talents -->
+    <section class="w-full p-4 pt-5 pb-0 box-border">
+      <h1 class="text-white text-2xl text-left mb-3">
+        Discover Talents, {USERNAME}
+      </h1>
 
-			<SearchInput value={search} />
+      <SearchInput value={search} />
 
-			<Cards filter={search} max={30} category={category} />
-		</section>
-	</main>
+      <Cards filter={search} max={30} category={category} />
+    </section>
+  </main>
 </Panel>
 
 <style>
-	* {
-		font-family: Poppins;
-	}
+  * {
+    font-family: Poppins;
+  }
 </style>
