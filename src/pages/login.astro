@@ -3,79 +3,77 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Sign in to Maker now!">
-    <main
-        class="bg-stone-900 w-2/4 rounded-lg py-4 px-3 flex flex-col items-center max-w-sm min-h-max pb-8 relative"
+  <main
+    class="bg-stone-900 w-2/4 rounded-lg py-4 px-3 flex flex-col items-center max-w-sm min-h-max pb-8 relative"
+  >
+    <ul class="grid w-full gap-3 mb-4">
+      <li class="h-1 rounded-lg bg-white/20 w-full block"></li>
+    </ul>
+
+    <h1 class="text-3xl font-bold text-center w-full text-white mb-4">
+      Complete your
+    </h1>
+    <img
+      src="/claqueta.png"
+      width="50%"
+      class="absolute top-10 opacity-30 animate-pulse py-10"
+    />
+
+    <form
+      action="/api/login.json"
+      class="flex flex-col items-center w-full z-10"
+      method="post"
     >
-        <ul class="grid w-full gap-3 mb-4">
-            <li class="h-1 rounded-lg bg-white/20 w-full block"></li>
-        </ul>
-
-        <h1 class="text-3xl font-bold text-center w-full text-white mb-4">
-            Complete your
-        </h1>
-        <img
-            src="/claqueta.png"
-            width="50%"
-            class="absolute top-10 opacity-30 animate-pulse py-10"
+      <div class="flex flex-col text-white w-3/4">
+        <label for="email" class="text-xs mt-2 ml-2">Email (or username)</label>
+        <input
+          name="e-mail"
+          type="text"
+          id="email"
+          placeholder="Enter your email"
+          class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
         />
+      </div>
 
-        <form
-            action="/api/login.json"
-            class="flex flex-col items-center w-full z-10"
-            method="post"
-        >
-            <div class="flex flex-col text-white w-3/4">
-                <label for="email" class="text-xs mt-2 ml-2"
-                    >Email (or username)</label
-                >
-                <input
-                    name="e-mail"
-                    type="text"
-                    id="email"
-                    placeholder="Enter your email"
-                    class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
-                />
-            </div>
+      <div class="flex flex-col text-white w-3/4">
+        <label for="location" class="text-xs mt-2 ml-2">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter your password"
+          class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
+        />
+      </div>
 
-            <div class="flex flex-col text-white w-3/4">
-                <label for="location" class="text-xs mt-2 ml-2">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    class="bg-stone-800 rounded-2xl py-1 px-3 outline-none text-sm"
-                />
-            </div>
-
-            <div class="flex gap-2 mt-4 w-3/4 z-10">
-                <button
-                    type="submit"
-                    class="bg-carmesi text-white rounded-2xl text-xs w-full px-2 block font-bold py-2"
-                    >Send
-                </button>
-            </div>
-        </form>
-        <a
-            href="/signup"
-            class="text-white/70 text-xs mt-4 mb-0 hover:text-white p-0 z-10"
-            >I don't have an account</a
-        >
-    </main>
+      <div class="flex gap-2 mt-4 w-3/4 z-10">
+        <button
+          type="submit"
+          class="bg-carmesi text-white rounded-2xl text-xs w-full px-2 block font-bold py-2"
+          >Send
+        </button>
+      </div>
+    </form>
+    <a
+      href="/signup"
+      class="text-white/70 text-xs mt-4 mb-0 hover:text-white p-0 z-10"
+      >I don't have an account</a
+    >
+  </main>
 </Layout>
 <style>
-    * {
-        font-family: Poppins;
-    }
-    body {
-        display: grid;
-        place-items: center;
-        background-image: url("/mountain.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        backdrop-filter: blur(20px);
-        height: 100vh;
-    }
+  * {
+    font-family: Poppins;
+  }
+  body {
+    display: grid;
+    place-items: center;
+    background-image: url("/mountain.webp");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(20px);
+    height: 100vh;
+  }
 </style>

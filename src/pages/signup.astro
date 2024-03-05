@@ -140,23 +140,23 @@ import Layout from "../layouts/Layout.astro";
 
   let toggleSubmit = false;
   id("next").addEventListener("click", () => {
-    id("back").disabled = false;
+    id("back").setAttribute("disabled", "");
     id("form-one").classList.add("hidden");
     id("form-two").classList.remove("hidden");
     id("form-two").classList.add("flex");
     id("two-bar").classList.replace("bg-white/20", "bg-white");
 
     id("next").textContent = "Start";
-    if (toggleSubmit) id("next").type = "submit";
+    if (toggleSubmit) id("next").setAttribute("type", "submit");
     toggleSubmit = true;
   });
   id("back").addEventListener("click", () => {
-    id("back").disabled = true;
+    id("back").setAttribute("disabled", "true");
     id("form-two").classList.add("hidden");
     id("form-one").classList.remove("hidden");
     id("two-bar").classList.replace("bg-white", "bg-white/20");
     id("next").textContent = "Next";
-    id("next").type = "button";
+    id("next").setAttribute("type", "button");
     toggleSubmit = false;
   });
 
@@ -164,7 +164,7 @@ import Layout from "../layouts/Layout.astro";
     const [file] = $("#profile-file").files;
     if (file) {
       let img = id("img-avatar");
-      img.src = URL.createObjectURL(file);
+      img.setAttribute("src", URL.createObjectURL(file));
       img.className = "w-28 h-28 object-cover rounded-full absolute";
     }
   };
@@ -185,7 +185,7 @@ import Layout from "../layouts/Layout.astro";
   body {
     display: grid;
     place-items: center;
-    background-image: url("/mountain.jpg");
+    background-image: url("/mountain.webp");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
