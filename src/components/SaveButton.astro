@@ -1,21 +1,21 @@
 ---
 interface Props {
-    film: string;
-    saved: boolean;
+  film: string;
+  saved: boolean;
 }
 
 const { film, saved = false } = Astro.props;
 
 const ID = Astro.cookies.get("logged").value;
 
-const colorButton = !saved ? "text-carmesi bg-white" : "bg-carmesi text-white";
+const colorButton = !saved ? "text-maker bg-white" : "bg-maker text-white";
 ---
 
 <i
-    class:list={[
-        colorButton,
-        "mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 grid place-items-center h-6",
-    ]}
-    data-name="icon-to-save"
-    data-user={ID}
-    data-film={film}></i>
+  class:list={[
+    colorButton,
+    "mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 grid place-items-center h-6",
+  ]}
+  data-name="icon-to-save"
+  data-user={ID}
+  data-film={film}></i>

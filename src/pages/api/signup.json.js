@@ -31,7 +31,7 @@ export const POST = async ({ request, redirect, cookies }) => {
         cookies.set('logged', id, { path: '/' });
         cookies.set('name', USERNAME, { path: '/' });
 
-        return redirect('/')
+        return redirect('/dashboard')
     } catch (e) {
         console.error(e);
         return redirect('/signup')

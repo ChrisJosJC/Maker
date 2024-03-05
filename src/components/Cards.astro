@@ -92,13 +92,13 @@ let { items } = await pb.collection("films").getList(1, max, {
         const SAVED_ID = saved[0].id;
         console.log(SAVED_ID);
         const res = await pb.collection("saved").delete(SAVED_ID);
-        e.target.classList.replace("bg-carmesi", "bg-white");
-        e.target.classList.replace("text-white", "text-carmesi");
+        e.target.classList.replace("bg-maker", "bg-white");
+        e.target.classList.replace("text-white", "text-maker");
         console.log(res);
       } else {
         const record = await pb.collection("saved").create(data);
-        e.target.classList.replace("bg-white", "bg-carmesi");
-        e.target.classList.replace("text-carmesi", "text-white");
+        e.target.classList.replace("bg-white", "bg-maker");
+        e.target.classList.replace("text-maker", "text-white");
         console.log(record);
       }
     }

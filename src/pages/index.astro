@@ -1,170 +1,32 @@
 ---
-export const prerender = false;
-import Panel from "../layouts/Panel.astro";
-import Cards from "../components/Cards.astro";
-
-if (!Astro.cookies.has("logged")) return Astro.redirect("/signup", 303);
-const status = Astro.url.searchParams.get("code");
-let message = "Successful operation";
-
-if (status != null) {
-  if (status === "400")
-    message = "Failed to delete record. Try again in a few minutes.";
-  if (status === "404") message = "The requested resource wasn't found.";
-}
-
-const USERNAME = Astro.cookies.get("name").value;
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Panel title="Find your Maker now">
-  <main class="grid w-full grid-cols-1 pr-12 pb-4 min-h-screen">
-    <!-- Talents -->
-    <section class="w-full p-4 pt-5 pb-0 box-border">
-      <h1 class="text-white text-2xl text-left mb-3">
-        Discover Talents, {USERNAME}
-      </h1>
-      <Cards filter="" category="" />
-    </section>
-    <!-- Categories -->
-    <section class="w-full pl-2 box-border">
-      <h2 class="text-white text-2xl mb-4 pl-3 mt-4">Categories</h2>
-      <div class="grid items-center gap-4 ml-2 grid-auto-fit-[100px]">
-        <article
-          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
-        >
-          <i class="mdi mdi-trending-up mdi-light text-3xl"></i>
-          <a href="/search?category=Sales">Sales</a>
-        </article>
-        <article
-          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
-        >
-          <i class="mdi mdi-account mdi-light text-3xl"></i>
-          <a href="/search?category=Human Resources">HR</a>
-        </article>
-        <article
-          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
-        >
-          <i class="mdi mdi-gesture mdi-light text-3xl"></i>
-          <a href="/search?category=Drawing">Drawing</a>
-        </article>
-        <article
-          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
-        >
-          <i class="mdi mdi-table mdi-light text-3xl"></i>
-          <a href="/search?category=Big Data">Big data</a>
-        </article>
-        <article
-          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
-        >
-          <i class="mdi mdi-brush mdi-light text-3xl"></i>
-          <a href="/search?category=Design">Design</a>
-        </article>
-        <article
-          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
-        >
-          <i class="mdi mdi-lightbulb mdi-light text-3xl"></i>
-          <a href="/search?category=Marketing">Marketing</a>
-        </article>
-        <article
-          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
-        >
-          <i class="mdi mdi-creation mdi-light text-3xl"></i>
-          <a href="/search?category=Others">Others</a>
-        </article>
-      </div>
-    </section>
-    <!-- My Learning -->
-    <section class="w-full pl-2 mb-2 mt-2 box-border">
-      <h2 class="text-white text-2xl mb-4 pl-3">My Learning</h2>
-      <div class="grid items-center gap-3 ml-2 grid-auto-fit-lg">
-        <article
-          class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[160px] flex gap-4 w-full"
-        >
-          <img
-            src="/mountain.webp"
-            loading="lazy"
-            decoding="async"
-            alt="A camera taking a photo."
-            class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
-          />
-
-          <div class="flex justify-between flex-col h-full min-h-[100px]">
-            <i
-              class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-carmesi bg-white h-6 grid place-items-center"
-            ></i>
-
-            <h3 class="text-white text-lg w-3/4">Becoming a photographer</h3>
-            <div class="flex justify-between px-2 pl-0">
-              <div class="flex items-center gap-2">
-                <i class="mdi mdi-clock-time-twelve text-xl mdi-light"></i>
-                <span class="text-white/70 text-xs">29% complete</span>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article
-          class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[240px] flex gap-4 w-full"
-        >
-          <img
-            src="/design_thinking.webp"
-            loading="lazy"
-            decoding="async"
-            alt="A camera taking a photo."
-            class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
-          />
-
-          <div class="flex justify-between flex-col h-full min-h-[100px]">
-            <i
-              class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-carmesi bg-white h-6 grid place-items-center"
-            ></i>
-
-            <h3 class="text-white text-lg w-3/4">Design thinking</h3>
-            <div class="flex justify-between px-2 pl-0">
-              <div class="flex items-center gap-2">
-                <i class="mdi mdi-clock-time-twelve text-xl mdi-light"></i>
-                <span class="text-white/70 text-xs">69% complete</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
-  {
-    status !== null && (
-      <div
-        class:list={[
-          status === "404" || status === "400"
-            ? "fixed bottom-4 left-[38%] p-4 mb-4 text-sm text-red-800 rounded-lg bg-gray-800 dark:bg-red-50 dark:text-red-600 dissapear z-50"
-            : "fixed bottom-4 left-[43%] p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dissapear z-50",
-        ]}
-        role="alert"
+<Layout title="Makerly - Click the talent">
+  <header
+    class="p-4 rounded-md border-white/70 bg-white/10 mx-6 my-7 flex flex-col-reverse relative max-h-screen box-border"
+  >
+    <div class="relative -top-32 h-0 pb-24 z-10">
+      <h1
+        class="text-8xl md:text-9xl font-extrabold bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.maker),theme(colors.white),theme(colors.maker),theme(colors.fuchsia.400),theme(colors.orange.700),theme(colors.indigo.800),theme(colors.maker))] bg-[length:200%_auto] animate-gradient"
       >
-        <span class="font-medium">Alert! </span> {message}
-      </div>
-    )
-  }
-</Panel>
-
-<style>
-  * {
-    font-family: Poppins;
-  }
-  .dissapear {
-    animation: dissapear 1s ease-out forwards;
-    animation-delay: 2s;
-    transition: all 1s;
-  }
-
-  @keyframes dissapear {
-    0% {
-      display: block;
-    }
-    to {
-      display: none;
-      translate: 0 100px;
-      scale: 0.9;
-      opacity: 0;
-    }
-  }
-</style>
+        Makerly
+      </h1>
+      <p class="text-white/90 text-pretty w-4/5">
+        Makerly is the platform for photographers and small directors to easily
+        communicate with their audience.
+      </p>
+      <a
+        href="/signup"
+        class="block bg-maker font-semibold py-3 w-4/5 pl-3 rounded-md mt-2 hover:bg-opacity-90 transition-all outline-2 outline-white outline"
+        >Join now!</a
+      >
+    </div>
+    <div>
+      <img
+        src="/camera.png"
+        class="aspect-square h-[50%] object-cover animate-pulse -z-10"
+      />
+    </div>
+  </header>
+</Layout>

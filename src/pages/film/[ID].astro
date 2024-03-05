@@ -53,7 +53,7 @@ if (item?.code === 404) return Astro.redirect("/404");
             </a>
             <h1
                 id="title"
-                class="text-6xl font-poppins font-black mt-4 mb-2 text-carmesi animate-pulse"
+                class="text-6xl font-poppins font-black mt-4 mb-2 text-maker animate-pulse"
             >
                 {item.title}
             </h1>
@@ -63,7 +63,7 @@ if (item?.code === 404) return Astro.redirect("/404");
                 class="flex justify-between md:gap-2 md:mt-4 pr-10 gap-5 w-full"
             >
                 <div class="flex items-center gap-2">
-                    <i class="mdi text-2xl mdi-table text-carmesi"></i>
+                    <i class="mdi text-2xl mdi-table text-maker"></i>
                     <span class="text-white/70 text-xs">{item.category}</span>
                 </div>
                 <div class="flex items-center gap-2">
@@ -82,12 +82,12 @@ if (item?.code === 404) return Astro.redirect("/404");
                             <div class="flex w-full gap-1 my-4">
                 <a
                     href=`/film/edit/${item.id}`
-                    class="bg-white text-carmesi font-bold py-2 rounded-md w-full pl-2 hover:bg-carmesi hover:text-white hover:animate-pulse"
+                    class="bg-white text-maker font-bold py-2 rounded-md w-full pl-2 hover:bg-maker hover:text-white hover:animate-pulse"
                     >Editar</a
                 >
                 <a
                     href=`/film/${item.id}.json`
-                    class="bg-white text-carmesi font-bold py-2 rounded-md w-full pl-2 hover:bg-carmesi hover:text-white hover:animate-pulse deleteBtn"
+                    class="bg-white text-maker font-bold py-2 rounded-md w-full pl-2 hover:bg-maker hover:text-white hover:animate-pulse deleteBtn"
                     >Eliminar</a
                 >
             </div>
