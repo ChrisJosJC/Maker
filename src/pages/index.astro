@@ -99,3 +99,12 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </div>
 </Layout>
+
+<script>
+  const banner = document.getElementById("bottom-banner");
+  const buttonCloseBanner = document.querySelector("[data-dismiss-target]");
+
+  buttonCloseBanner.addEventListener("click", () => {
+    banner.classList.add("hidden");
+  });
+</script>
