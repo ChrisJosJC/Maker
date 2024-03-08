@@ -1,0 +1,41 @@
+<nav
+  class="flex items-center justify-between px-4 fixed w-full top-0 py-2 z-10"
+>
+  <a href="/#"
+    ><img
+      src="/favicon.svg"
+      alt="Logo de Makerly"
+      class="aspect-square"
+      width="40px"
+    /></a
+  >
+  <div class="flex items-center gap-4 mr-3">
+    <a href="/#About">About us</a>
+    <a href="/login">Sign in</a>
+    <a href="/signup" class="bg-maker py-3 px-2">Start now!</a>
+  </div>
+</nav>
+
+<style>
+  @keyframes showBg {
+    from {
+      background-color: transparent;
+    }
+
+    to {
+      background-color: #000000d3;
+      backdrop-filter: blur(4px);
+    }
+  }
+  nav {
+    view-timeline-name: --nav;
+    view-timeline-axis: block;
+
+    animation-timeline: --nav;
+    animation-name: showBg;
+
+    animation-range: 100vh;
+    animation-fill-mode: both;
+    animation-duration: 1ms;
+  }
+</style>
