@@ -1,18 +1,70 @@
 <nav
-  class="flex items-center justify-between px-4 fixed w-full top-0 py-2 z-10"
+  class="flex items-center pl-4 pr-3 fixed w-screen top-0 py-2 z-10 border-gray-200"
 >
-  <a href="/#"
-    ><img
-      src="/favicon.svg"
-      alt="Logo de Makerly"
-      class="aspect-square"
-      width="40px"
-    /></a
+  <div
+    class="max-w-screen px-2 flex flex-wrap items-center justify-between w-full"
   >
-  <div class="flex items-center gap-4 mr-3">
-    <a href="/#About">About us</a>
-    <a href="/login">Sign in</a>
-    <a href="/signup" class="bg-maker py-3 px-2">Start now!</a>
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="/favicon.svg" class="h-8" alt="Flowbite Logo" />
+    </a>
+    <button
+      id="btnToggle"
+      data-collapse-toggle="navbar-default"
+      type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      aria-controls="navbar-default"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15"></path>
+      </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 max-md:bg-gray-700"
+      >
+        <li>
+          <a
+            href="#"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-maker/70 md:p-0 dark:text-white md:dark:hover:text-maker dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Projects</a
+          >
+        </li>
+        <!-- TODO <li>
+          <a
+            href="#"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-maker/70 md:p-0 dark:text-white md:dark:hover:text-maker dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Contract</a
+          >
+        </li> -->
+        <li>
+          <a
+            href="/login"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-maker/70 md:p-0 dark:text-white md:dark:hover:text-maker dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Sign in</a
+          >
+        </li>
+        <li>
+          <a
+            href="/signup"
+            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-maker/70 md:p-0 dark:text-white md:dark:hover:text-maker dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            >Start now!</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -39,3 +91,9 @@
     animation-duration: 1ms;
   }
 </style>
+
+<script>
+  document.querySelector("#btnToggle").addEventListener("click", (e) => {
+    document.querySelector("#navbar-default").classList.toggle("hidden");
+  });
+</script>

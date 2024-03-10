@@ -3,25 +3,31 @@ import Action from "../components/Action.astro";
 ---
 
 <section
-  id="About"
-  class="flex justify-center items-center h-screen p-10 bg-repeat-round gap-3"
+  id="Projects"
+  class="flex max-sm:flex-col justify-center items-center h-screen p-10 bg-repeat-round gap-10"
 >
   <img
     src="/mountain.webp"
     alt="Photo of mountains"
-    class="object-cover lg:w-1/3 aspect-square pt-8 px-4 pb-16 box-content bg-white border-black border border-solid"
+    class="object-cover w-2/3 lg:w-1/3 aspect-square pt-8 px-4 pb-16 box-content bg-white border-black border border-solid"
   />
   <article class="">
-    <h2 class="lg:text-6xl text-pretty max-w-[400px]">
+    <h2
+      class="lg:text-6xl max-sm:text-center text-4xl text-pretty max-w-[400px]"
+    >
       Share your best videos
     </h2>
-    <p class="max-w-[500px] text-white/80 mt-4 pl-1 text-balance">
+    <p
+      class="max-w-[500px] text-white/80 md:mt-4 pl-1 max-sm:text-sm max-sm:mb-2 text-balance max-sm:text-center"
+    >
       Join our community of filmmakers and videographers to showcase your talent
       and inspire others. Whether it's a short film, documentary, or music
       video, Makerly is your platform to shine. Start sharing your passion
       today!
     </p>
-    <Action href="/projects" class="w-full px-3">See projects</Action>
+    <Action href="/projects" class="w-full px-3 max-sm:text-center">
+      See projects
+    </Action>
   </article>
 </section>
 

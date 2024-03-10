@@ -68,5 +68,8 @@
 
   buttonCloseBanner.addEventListener("click", () => {
     banner.classList.add("opacity-0", "invisible");
+    setTimeout(() => {
+      banner.classList.add("hidden");
+    }, 500);
   });
 </script>

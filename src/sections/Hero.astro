@@ -3,17 +3,17 @@ import Nav from "../components/Nav.astro";
 import Action from "../components/Action.astro";
 ---
 
-<header class="grid place-items-center h-screen">
+<header class="grid place-items-center h-screen md:h-svh">
   <Nav />
   <div
     class="flex animate-scale flex-col justify-items-center items-center text-center"
   >
     <h1
-      class="animate-blurred-fade-in animate-duration-[1s] text-9xl text-center font-black tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-orange-200/70 to-50% via-orange-200/90 to-maker"
+      class="max-[375px]:text-[55px] max-sm:text-7xl animate-blurred-fade-in animate-duration-[1s] text-9xl text-center font-black tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-orange-200/70 to-50% via-orange-200/90 to-maker"
     >
       MAKERLY
     </h1>
-    <p class="w-2/4 text-white/90">
+    <p class="max-sm:w-4/5 max-[320px]:text-xs w-2/4 text-white/90">
       Your hub for creative professionals. Showcase your talent, connect with
       peers, and discover exciting opportunities. Join now and let your
       creativity shine!
