@@ -14,8 +14,8 @@ export const POST = async ({ request, redirect, cookies }) => {
 
         const id = authData.record.id
         const name = authData.record.name
-        cookies.set('logged', id, { path: '/' });
-        cookies.set('name', name, { path: '/' });
+        cookies.set('logged', id, { path: '/', maxAge: 60 * 60 * 24 * 60 });
+        cookies.set('name', name, { path: '/', maxAge: 60 * 60 * 24 * 60 });
 
         return redirect('/dashboard')
     } catch (e) {

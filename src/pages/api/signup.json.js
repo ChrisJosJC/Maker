@@ -28,8 +28,8 @@ export const POST = async ({ request, redirect, cookies }) => {
         await pb.collection('users').requestVerification(email);
 
         const { id, USERNAME } = record
-        cookies.set('logged', id, { path: '/' });
-        cookies.set('name', USERNAME, { path: '/' });
+        cookies.set('logged', id, { path: '/', maxAge: 60 * 60 * 24 * 60 });
+        cookies.set('name', USERNAME, { path: '/', maxAge: 60 * 60 * 24 * 60 });
 
         return redirect('/dashboard')
     } catch (e) {
