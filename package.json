@@ -20,6 +20,7 @@
     "@midudev/tailwind-animations": "^0.0.7",
     "astro": "^4.4.8",
     "astro-icon": "0.8.1",
+    "compressorjs": "^1.2.1",
     "humanize-duration": "3.30.0",
     "pocketbase": "0.19.0",
     "tailwindcss": "3.3.3",

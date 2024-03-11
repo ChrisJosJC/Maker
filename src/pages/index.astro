@@ -5,6 +5,9 @@ import Hero from "../sections/Hero.astro";
 import Projects from "../sections/Projects.astro";
 import Layout from "../layouts/Layout.astro";
 import BackgroundBlurry from "../components/BackgroundBlurry.astro";
+
+if (Astro.cookies.has("logged")) return Astro.redirect("/dashboard", 303);
+const status = Astro.url.searchParams.get("code");
 ---
 
 <Layout title="Makerly - Click the talent">

@@ -14,21 +14,16 @@ const item = await pb.collection("users").getOne(ID);
     action="/api/create.json"
     method="post"
     enctype="multipart/form-data"
-    class="grid min-h-full sm:max-h-screen box-border grid-auto-fit-md gap-2 snap-y snap-proximity snap-center"
+    class="grid h-full sm:max-h-screen box-border grid-auto-fit-md gap-2 snap-y snap-proximity snap-center overflow-hidden"
   >
     <i class="blur-md hidden"></i>
-    <div class="h-screen w-full upload relative">
-      <input
-        type="file"
-        name="banner"
-        id="banner"
-        accept="image/*"
-        class="hidden"
-      />
+    <div
+      class="h-screen w-full upload relative after:border-none before:borden-none"
+    >
+      <input type="file" id="banner" accept="image/*" class="hidden" />
       <img
-        class="object-cover object-center w-full h-full shadow-inner shadow-black absolute md:blur-none"
+        class="object-cover object-center w-full h-full absolute md:blur-none"
         id="img-banner"
-        src="/;lvizdmountain.webp"
       />
       <label
         for="banner"
@@ -72,12 +67,12 @@ const item = await pb.collection("users").getOne(ID);
           class="w-10/12 py-2 px-3 pr-2 rounded-sm bg-white/20 font-bold text-white"
         >
           <option value="">Select the category</option>
-          <option value="Sales">Sales</option>
-          <option value="Human Resources">Human Resources</option>
-          <option value="Drawing">Drawing</option>
-          <option value="Big Data">Big Data</option>
-          <option value="Design">Design</option>
-          <option value="Marketing">Marketing</option>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Horror">Horror</option>
           <option value="Others">Others</option>
         </select>
         <input
@@ -97,6 +92,7 @@ const item = await pb.collection("users").getOne(ID);
 </Panel>
 
 <script>
+  import Compressor from "compressorjs";
   const $ = (el) => document.querySelector(el);
   const id = (el) => document.getElementById(el);
 
@@ -113,10 +109,60 @@ const item = await pb.collection("users").getOne(ID);
     if (file) {
       let img = id("img-banner");
 
-      img.src = URL.createObjectURL(file);
+      img.setAttribute("src", URL.createObjectURL(file));
       // img.className = "w-28 h-28 object-cover rounded-full absolute";
     }
   };
+
+  document.forms[0].addEventListener(
+    "submit",
+    (e) => {
+      e.preventDefault();
+      const banner = id("banner") as HTMLInputElement;
+      const file = banner.files[0];
+
+      new Compressor(file, {
+        convertTypes: "image/webp",
+        mimeType: "image/webp",
+        maxHeight: 600,
+        quality: 0.7,
+
+        async success(result) {
+          const formData = new FormData();
+
+          // The third parameter is required for server
+          console.log(result);
+          formData.append("title", id("title").value);
+          formData.append("desc", id("desc").value);
+          formData.append("category", id("category").value);
+          formData.append("duration", id("duration").value);
+          formData.append("banner", result);
+
+          await fetch("/api/create.json", {
+            method: "POST",
+            body: formData,
+            redirect: "follow",
+            headers: {
+              enctype: "multipart/form-data",
+            },
+          })
+            .then((data) => data.json())
+            .then(({ id, message }) => {
+              location.href = `/film/${id}?message=${message}`;
+            })
+            .catch(
+              ({ message }) => (location.href = `/create?message=${message}`)
+            );
+        },
+        error({ message }) {
+          location.href = `/create?message=${btoa(message)}`;
+
+          console.log(btoa(message));
+        },
+      });
+    },
+    { once: true }
+  );
 </script>
 
 <style>

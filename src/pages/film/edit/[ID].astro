@@ -5,11 +5,9 @@ import PocketBase from "pocketbase";
 
 const pb = new PocketBase("https://makerly.pockethost.io/");
 
-const { ID } = Astro.params;
+const ID = Astro.params?.ID;
 
-const item = await pb
-  .collection("films")
-  .getOne(ID || "", { expand: "posted_by" });
+const item = await pb.collection("films").getOne(ID, { expand: "posted_by" });
 
 if (item?.code === 404) return Astro.redirect("/404");
 ---
@@ -84,12 +82,12 @@ if (item?.code === 404) return Astro.redirect("/404");
           class="w-10/12 py-2 px-3 pr-2 rounded-sm bg-white/20 font-bold text-white"
         >
           <option value="">Select the category</option>
-          <option value="Sales">Sales</option>
-          <option value="Human Resources">Human Resources</option>
-          <option value="Drawing">Drawing</option>
-          <option value="Big Data">Big Data</option>
-          <option value="Design">Design</option>
-          <option value="Marketing">Marketing</option>
+          <option value="Sales">Action</option>
+          <option value="Human Resources">Adventure</option>
+          <option value="Drawing">Comedy</option>
+          <option value="Big Data">Drama</option>
+          <option value="Design">Fantasy</option>
+          <option value="Marketing">Horror</option>
           <option value="Others">Others</option>
         </select>
         <input

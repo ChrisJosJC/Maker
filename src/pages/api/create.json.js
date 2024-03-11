@@ -1,10 +1,9 @@
-import PocketBase from 'pocketbase';
+import PocketBase from 'pocketbase'
 
 const pb = new PocketBase('https://makerly.pockethost.io/');
 
 export const POST = async ({ request, redirect, cookies }) => {
     const data = await request.formData()
-
     try {
         const title = data.get('title')
         const desc = data.get('desc')
@@ -12,7 +11,9 @@ export const POST = async ({ request, redirect, cookies }) => {
         const duration = data.get('duration')
         const starred = 1
         const posted_by = cookies.get('logged', { path: '/' }).value
-        const banner = data.get('banner')
+        const banner = await data.get('banner')
+
+        console.log(banner);
 
         const formData = new FormData()
 
@@ -27,12 +28,10 @@ export const POST = async ({ request, redirect, cookies }) => {
 
 
         const { id } = record
-        console.log(formData);
 
-        return redirect(`/film/${id}`)
-    } catch (e) {
-        console.error(e.message);
-        return redirect(`/create`)
+        return new Response(JSON.stringify({ id, message: 1 }))
+    } catch ({ message }) {
+        return new Response({ message })
     }
 }
 

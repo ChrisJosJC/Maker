@@ -32,7 +32,7 @@ let { items } = await pb.collection("films").getList(1, max, {
     "talents w-full grid gap-3",
     isAccountPage || isProfilePage
       ? "md:grid-cols-2 md:grid-cols-2"
-      : "grid-auto-fit",
+      : "grid-auto-fit lg:grid-cols-4",
   ]}
 >
   {
@@ -58,7 +58,7 @@ let { items } = await pb.collection("films").getList(1, max, {
   }
   {
     items.length == 0 ? (
-      <h2 class="text-white/40 text-xl italic">No hay coincidencias...</h2>
+      <h2 class="text-white/40 my-4 text-xl italic w-full">Nothing yet</h2>
     ) : (
       ""
     )

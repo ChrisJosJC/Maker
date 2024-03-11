@@ -44,7 +44,7 @@ const item = await pb.collection("users").getOne(ID);
       </h1>
       <p class="text-white font-poppins">{item.email}</p>
       <h2 class="text-white text-xl font-bold mb-2">Recent projects</h2>
-      <Cards user={ID} filter="" category="" />
+      <Cards user={ID} filter="" category="" max={-1} />
     </div>
   </main>
 

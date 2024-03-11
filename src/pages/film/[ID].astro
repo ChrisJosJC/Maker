@@ -1,18 +1,18 @@
 ---
-export const prerender = false;
 import Panel from "../../layouts/Panel.astro";
 import PocketBase from "pocketbase";
 import humanize from "humanize-duration";
 
-const { ID } = Astro.params;
+const { id } = Astro.params;
 const IDUser = Astro.cookies.get('logged').value;
 
 const pb = new PocketBase("https://makerly.pockethost.io/");
 
-let item = await pb.collection("films").getOne(ID, { expand: "posted_by" });
-const isTheOwner = IDUser === item.expand.posted_by.id
+let item = await pb.collection("films").getOne(id, {expand:"posted_by"})
 
-if (item?.code === 404) return Astro.redirect("/404");
+if (item?.code === 404) Astro.redirect("/404");
+const isTheOwner =IDUser === item.expand.posted_by.id 
+
 ---
 
 <Panel title={item.title + " in Maker"}>
