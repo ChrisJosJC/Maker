@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+if (Astro.cookies.has("logged")) return Astro.redirect("/dashboard", 303);
 ---
 
 <Layout title="Sign in to Maker now!">
@@ -14,7 +16,7 @@ import Layout from "../layouts/Layout.astro";
       Complete your
     </h1>
     <img
-      src="/claqueta.png"
+      src="/claqueta.webp"
       width="50%"
       class="absolute top-10 opacity-30 animate-pulsing animate-iteration-count-infinite py-10"
     />

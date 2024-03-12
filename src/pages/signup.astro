@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+if (Astro.cookies.has("logged")) return Astro.redirect("/dashboard", 303);
 ---
 
 <Layout title="Sign in to Maker now!">
@@ -176,6 +178,20 @@ import Layout from "../layouts/Layout.astro";
       id("confirm-password").style.border = "1px solid red";
     }
   });
+
+  fetch("/User.png")
+    .then(function (response) {
+      return response.blob();
+    })
+    .then(function (blob) {
+      const myFile = new File([blob], "User.png", {
+        type: "image/png",
+        lastModified: Number(new Date().toDateString()),
+      });
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(myFile);
+      $("#profile-file").files = dataTransfer.files;
+    });
 </script>
 
 <style>

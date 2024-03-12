@@ -29,7 +29,9 @@ const USERNAME = Astro.cookies.get("name").value;
     <!-- Categories -->
     <section class="w-full pl-2 box-border">
       <h2 class="text-white text-2xl mb-4 pl-3 mt-4">Categories</h2>
-      <div class="grid items-center gap-4 ml-2 grid-auto-fit-[100px]">
+      <div
+        class="grid items-center gap-4 ml-2 grid-auto-fit-[100px] lg:grid-auto-fit"
+      >
         <article
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >

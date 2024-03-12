@@ -7,11 +7,12 @@ const { id } = Astro.params;
 const IDUser = Astro.cookies.get('logged').value;
 
 const pb = new PocketBase("https://makerly.pockethost.io/");
-
 let item = await pb.collection("films").getOne(id, {expand:"posted_by"})
+            .then(data => data)
+            .catch(err =>err)
+if(item?.status==404) return Astro.redirect('/404')
 
-if (item?.code === 404) Astro.redirect("/404");
-const isTheOwner =IDUser === item.expand.posted_by.id 
+const isTheOwner =IDUser === item.expand.posted_by.id
 
 ---
 

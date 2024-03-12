@@ -27,13 +27,13 @@ export const POST = async ({ request, redirect, cookies }) => {
         // (optional) send an email verification request
         await pb.collection('users').requestVerification(email);
 
-        const { id, USERNAME } = record
+        const { id } = record
         cookies.set('logged', id, { path: '/', maxAge: 60 * 60 * 24 * 60 });
-        cookies.set('name', USERNAME, { path: '/', maxAge: 60 * 60 * 24 * 60 });
+        cookies.set('name', username, { path: '/', maxAge: 60 * 60 * 24 * 60 });
 
         return redirect('/dashboard')
-    } catch (e) {
-        console.error(e);
+    } catch (err) {
+        console.error(err);
         return redirect('/signup')
     }
 }
