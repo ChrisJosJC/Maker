@@ -1,7 +1,6 @@
 ---
 import Card from "../components/Card.astro";
 import PocketBase from "pocketbase";
-import Sponsor from "./Sponsor.astro";
 interface Props {
   filter?: string;
   sort?: string;
@@ -65,8 +64,8 @@ let { items } = await pb.collection("films").getList(1, max, {
   }
 </div>
 
-<script type="module">
-  import PocketBase from "../../node_modules/pocketbase/dist/pocketbase.es.js";
+<script>
+  import PocketBase from "pocketbase";
 
   const pb = new PocketBase("https://makerly.pockethost.io/");
 
