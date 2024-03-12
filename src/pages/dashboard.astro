@@ -13,7 +13,7 @@ if (status != null) {
   if (status === "404") message = "The requested resource wasn't found.";
 }
 
-const USERNAME = Astro.cookies.get("name").value;
+const USERNAME = Astro.cookies.get("name")?.value || "";
 ---
 
 <!-- TODO: Make it responsive -->
