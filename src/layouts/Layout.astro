@@ -1,6 +1,7 @@
 ---
 import "@fontsource/poppins";
 import "@fontsource-variable/overpass";
+import SpeedInsights from "@vercel/speed-insights/astro";
 interface Props {
   title: string;
 }
@@ -40,6 +41,7 @@ const description =
   </head>
   <body>
     <slot />
+    <SpeedInsights />
   </body>
 </html>
 <style is:global>

@@ -1,6 +1,7 @@
 ---
 import "@fontsource/poppins";
 import Menu from "../components/Menu.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title: string;
@@ -49,6 +50,7 @@ const description =
       >
       </div>
     </div>
+    <SpeedInsights />
   </body>
   <style is:global>
     .panel {
