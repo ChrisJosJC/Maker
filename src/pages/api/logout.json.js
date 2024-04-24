@@ -8,5 +8,5 @@ export const GET = async ({ redirect, cookies }) => {
     // Logout
     pb.authStore.clear();
 
-    return redirect('/login')
+    return redirect('/')
 }

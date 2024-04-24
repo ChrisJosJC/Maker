@@ -91,7 +91,10 @@ const USERNAME = Astro.cookies.get("name")?.value || "";
             class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
           />
 
-          <div class="flex justify-between flex-col h-full min-h-[100px]">
+          <a
+            href="/blog/cam-01"
+            class="flex justify-between flex-col h-full min-h-[100px]"
+          >
             <i
               class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-maker bg-white h-6 grid place-items-center"
             ></i>
@@ -103,7 +106,7 @@ const USERNAME = Astro.cookies.get("name")?.value || "";
                 <span class="text-white/70 text-xs">29% complete</span>
               </div>
             </div>
-          </div>
+          </a>
         </article>
         <article
           class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[240px] flex gap-4 w-full"
@@ -116,7 +119,10 @@ const USERNAME = Astro.cookies.get("name")?.value || "";
             class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
           />
 
-          <div class="flex justify-between flex-col h-full min-h-[100px]">
+          <a
+            href="/blog/design-thinking"
+            class="flex justify-between flex-col h-full min-h-[100px]"
+          >
             <i
               class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-maker bg-white h-6 grid place-items-center"
             ></i>
@@ -128,7 +134,7 @@ const USERNAME = Astro.cookies.get("name")?.value || "";
                 <span class="text-white/70 text-xs">69% complete</span>
               </div>
             </div>
-          </div>
+          </a>
         </article>
       </div>
     </section>
