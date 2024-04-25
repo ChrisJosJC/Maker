@@ -6,11 +6,11 @@ import { HumanizeDurationLanguage, HumanizeDuration } from 'humanize-duration-ts
 const langService: HumanizeDurationLanguage = new HumanizeDurationLanguage()
 const humanizer = new HumanizeDuration(langService)
 
-const {id}  = Astro.params;
+const {ID:id}  = Astro.params;
 const IDUser = Astro?.cookies?.get('logged')?.value;
 
 const pb = new PocketBase("https://makerly.pockethost.io/");
-let item = await pb.collection("films").getOne(id!, {expand:"posted_by"})
+let item = await pb.collection("films").getOne(id, {expand:"posted_by"})
             .then(data => data)
             .catch(err =>err);
 console.log(item);
