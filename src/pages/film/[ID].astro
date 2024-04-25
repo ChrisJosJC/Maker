@@ -14,7 +14,7 @@ let item = await pb.collection("films").getOne(id, {expand:"posted_by"})
             .then(data => data)
             .catch(err =>err);
 
-if(item?.status==404) return Astro.redirect('/404')
+// if(item?.status==404) return Astro.redirect('/404')
 
 const isTheOwner =IDUser === item.expand.posted_by.id
 
