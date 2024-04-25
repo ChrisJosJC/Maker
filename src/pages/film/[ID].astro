@@ -1,10 +1,13 @@
 ---
 import Panel from "../../layouts/Panel.astro";
 import PocketBase from "pocketbase";
-import humanize from "humanize-duration";
+import { HumanizeDurationLanguage, HumanizeDuration } from 'humanize-duration-ts';
 
-const { id } = Astro.params;
-const IDUser = Astro.cookies.get('logged').value;
+const langService: HumanizeDurationLanguage = new HumanizeDurationLanguage()
+const humanizer = new HumanizeDuration(langService)
+
+const id  = Astro.params.id!;
+const IDUser = Astro?.cookies?.get('logged')?.value;
 
 const pb = new PocketBase("https://makerly.pockethost.io/");
 let item = await pb.collection("films").getOne(id, {expand:"posted_by"})
@@ -76,7 +79,7 @@ const isTheOwner =IDUser === item.expand.posted_by.id
                     <i class="mdi text-2xl mdi-clock-time-twelve text-white"
                     ></i>
                     <span class="text-white/70 text-xs"
-                        >{humanize(item.duration * 60000)}</span
+                        >{humanizer.humanize(item.duration * 60000)}</span
                     >
                 </div>
             </div>
@@ -99,7 +102,7 @@ const isTheOwner =IDUser === item.expand.posted_by.id
 </Panel>
 
 <script>
-    const $ = (el) => document.querySelector(el);
+    const $ = (el: string) => document.querySelector(el)!;
 
     window.addEventListener("scroll", (e) => {
         if (window.scrollY >= 80) {
@@ -111,7 +114,7 @@ const isTheOwner =IDUser === item.expand.posted_by.id
 
     $(".deleteBtn").addEventListener("click", (e)=>{
         e.preventDefault()
-        const URLTOFETCH = e.target.href
+        const URLTOFETCH = e?.target?.href
         fetch(URLTOFETCH, {
             method: "DELETE",
         }).then(res => res.json())

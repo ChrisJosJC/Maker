@@ -41,6 +41,9 @@ dependencies:
   humanize-duration:
     specifier: 3.30.0
     version: 3.30.0
+  humanize-duration-ts:
+    specifier: ^2.1.1
+    version: 2.1.1
   pocketbase:
     specifier: 0.19.0
     version: 0.19.0
@@ -55,6 +58,9 @@ devDependencies:
   '@shrutibalasa/tailwind-grid-auto-fit':
     specifier: 1.1.0
     version: 1.1.0
+  '@types/humanize-duration':
+    specifier: ^3.27.4
+    version: 3.27.4
 
 packages:
 
@@ -880,6 +886,10 @@ packages:
     dependencies:
       '@types/unist': 3.0.2
     dev: false
+
+  /@types/humanize-duration@3.27.4:
+    resolution: {integrity: sha512-yaf7kan2Sq0goxpbcwTQ+8E9RP6HutFBPv74T/IA/ojcHKhuKVlk2YFYyHhWZeLvZPzzLE3aatuQB4h0iqyyUA==}
+    dev: true
 
   /@types/mdast@4.0.3:
     resolution: {integrity: sha512-LsjtqsyF+d2/yFOYaN22dHZI1Cpwkrj+g06G8+qtUKlhovPW89YhqSnfKtMbkgmEtYpH2gydRNULd6y8mciAFg==}
@@ -2232,6 +2242,10 @@ packages:
   /human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
+    dev: false
+
+  /humanize-duration-ts@2.1.1:
+    resolution: {integrity: sha512-TibNF2/fkypjAfHdGpWL/dmWUS0G6Qi+3mKyiB6LDCowbMy+PtzbgPTnFMNTOVAJXDau01jYrJ3tFoz5AJSqhA==}
     dev: false
 
   /humanize-duration@3.30.0:
