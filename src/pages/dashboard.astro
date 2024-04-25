@@ -51,43 +51,53 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >
           <i class="mdi mdi-run mdi-light text-3xl"></i>
-          <a href="/search?category=Sales">Action</a>
+          <a class="max-md:text-sm" href="/search?category=Action">Action</a>
         </article>
         <article
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >
           <i class="mdi mdi-airplane mdi-light text-3xl"></i>
-          <a href="/search?category=Human Resources">Adventure</a>
+          <a class="max-md:text-sm" href="/search?category=Adventure"
+            >Adventure</a
+          >
         </article>
         <article
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >
           <i class="mdi mdi-drama-masks mdi-light text-3xl"></i>
-          <a href="/search?category=Drawing">Comedy</a>
+          <a class="max-md:text-sm" href="/search?category=Comedy">Comedy</a>
         </article>
         <article
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >
           <i class="mdi mdi-movie mdi-light text-3xl"></i>
-          <a href="/search?category=Big Data">Drama</a>
+          <a class="max-md:text-sm" href="/search?category=Drama">Drama</a>
         </article>
         <article
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >
           <i class="mdi mdi-auto-fix mdi-light text-3xl"></i>
-          <a href="/search?category=Design">Fantasy</a>
+          <a class="max-md:text-sm" href="/search?category=Fantasy">Fantasy</a>
         </article>
         <article
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >
           <i class="mdi mdi-ghost mdi-light text-3xl"></i>
-          <a href="/search?category=Marketing">Horror</a>
+          <a class="max-md:text-sm" href="/search?category=Horror">Horror</a>
+        </article>
+        <article
+          class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
+        >
+          <i class="mdi mdi-map-search mdi-light text-3xl"></i>
+          <a class="max-md:text-sm" href="/search?category=Documentary"
+            >Documentary</a
+          >
         </article>
         <article
           class="bg-[#222] rounded-lg flex items-center justify-center flex-col p-2 w-full h-24 text-white hover:scale-95 hover:opacity-75 transition-transform cursor-pointer"
         >
           <i class="mdi mdi-rocket mdi-light text-3xl"></i>
-          <a href="/search?category=Others">Others</a>
+          <a class="max-md:text-sm" href="/search?category=Others">Others</a>
         </article>
       </div>
     </section>

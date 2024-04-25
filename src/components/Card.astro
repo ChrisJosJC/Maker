@@ -67,7 +67,7 @@ const saved = await pb.collection("saved").getFullList({
     <h3 class="text-white text-lg">{title}</h3>
     {
       !max_height ? (
-        <p class="text-white/40 text-sm text-ellipsis overflow-hidden line-clamp-2 italic mb-3">
+        <p class="text-white/40 text-sm text-ellipsis overflow-hidden line-clamp-1 italic mb-3">
           {desc}
         </p>
       ) : (
@@ -89,7 +89,7 @@ const saved = await pb.collection("saved").getFullList({
 
       <a
         href={"/film/" + id}
-        class="absolute bottom-0 w-full bg-maker flex justify-center items-center py-1 px-4 text-white opacity-10 transition-all scale-105 hover:opacity-100"
+        class="absolute bottom-0 w-full bg-gradient-to-t from-maker via-transparent to-transparent hover:via-maker flex justify-center items-center py-1 px-4 text-white opacity-10 transition-all scale-105 hover:opacity-100"
       >
         View
       </a>
