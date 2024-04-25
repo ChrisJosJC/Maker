@@ -13,6 +13,7 @@ const pb = new PocketBase("https://makerly.pockethost.io/");
 let item = await pb.collection("films").getOne(id, {expand:"posted_by"})
             .then(data => data)
             .catch(err =>err);
+console.log(item);
 
 // if(item?.status==404) return Astro.redirect('/404')
 
