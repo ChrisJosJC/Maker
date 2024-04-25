@@ -14,13 +14,11 @@ const item = await pb.collection("users").getOne(ID);
     action="/api/create.json"
     method="post"
     enctype="multipart/form-data"
-    class="grid h-full sm:max-h-screen box-border grid-auto-fit-md gap-2 snap-y snap-proximity snap-center overflow-hidden"
+    class="grid h-full sm:max-h-screen box-border grid-auto-fit-md gap-2 overflow-hidden"
   >
     <i class="blur-md hidden"></i>
-    <div
-      class="h-screen w-full upload relative after:border-none before:borden-none"
-    >
-      <input type="file" id="banner" accept="image/*" class="hidden" />
+    <div class="aspect-video w-full upload relative">
+      <input type="file" id="banner" accept="image/*" hidden />
       <img
         class="object-cover object-center w-full h-full absolute md:blur-none"
         id="img-banner"
@@ -30,7 +28,7 @@ const item = await pb.collection("users").getOne(ID);
         id="label-banner"
         class="flex flex-col justify-center items-center h-[98%] shadow-inner shadow-black -z-10 md:blur-none m-2 border-4 border-dashed hover:bg-black/40 border-maker box-border rounded-md top-0 hover:backdrop-blur-sm hover:opacity-100 opacity-0 transition-all"
       >
-        <img src="/claqueta.webp" class="w-3/6" />
+        <img src="/claqueta.webp" class="w-1/6" />
         <h3 class="text-white text-3xl font-extrabold">Change banner</h3>
       </label>
     </div>
@@ -93,14 +91,14 @@ const item = await pb.collection("users").getOne(ID);
 
 <script>
   import Compressor from "compressorjs";
-  const $ = (el) => document.querySelector(el);
-  const id = (el) => document.getElementById(el);
+  const $ = (el: string) => document.querySelector(el);
+  const id = (el: string) => document.getElementById(el);
 
   window.addEventListener("scroll", (e) => {
     if (window.scrollY >= 80) {
-      $("#banner").classList.add("blur-md");
+      $("#banner")?.classList?.add("blur-md");
     } else {
-      $("#banner").classList.remove("blur-md");
+      $("#banner")?.classList?.remove("blur-md");
     }
   });
 
@@ -109,7 +107,7 @@ const item = await pb.collection("users").getOne(ID);
     if (file) {
       let img = id("img-banner");
 
-      img.setAttribute("src", URL.createObjectURL(file));
+      img?.setAttribute("src", URL.createObjectURL(file));
       // img.className = "w-28 h-28 object-cover rounded-full absolute";
     }
   };
@@ -119,7 +117,7 @@ const item = await pb.collection("users").getOne(ID);
     (e) => {
       e.preventDefault();
       const banner = id("banner") as HTMLInputElement;
-      const file = banner.files[0];
+      const file = banner?.files[0];
 
       new Compressor(file, {
         convertTypes: "image/webp",

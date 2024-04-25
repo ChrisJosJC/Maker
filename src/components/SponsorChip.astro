@@ -1,0 +1,13 @@
+---
+const { source } = Astro.props;
+---
+
+<a
+  href="tel:1809-765-3566"
+  class="backdrop:blur-md hover:scale-105 transition-all rounded-full w-48 h-48 flex flex-col items-center justify-center text-md pb-3 text-center text-white px-4"
+  ><img
+    src={source}
+    class="h-32 mb-4 object-cover object-center"
+    alt="Fran De Connection Sponsor"
+  /><slot /></a
+>

@@ -1,5 +1,12 @@
-# Becoming a Photographer: Capturing Moments, Creating Memories
-
+---
+title: "Become Photographer"
+excerpt: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
+publishDate: "2022-11-08T11:39:36.050Z"
+image: "https://images.unsplash.com/photo-1613728818502-94784f087829?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+category: "Tips"
+author: "Chris Joseph"
+layout: "../../layouts/BlogLayout.astro"
+tags: [begin]
 ---
 
 ## Introduction

@@ -14,20 +14,35 @@ if (status != null) {
 }
 
 const USERNAME = Astro.cookies.get("name")?.value || "";
+
+const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
+  (a, b) =>
+    new Date(b.frontmatter.publishDate).valueOf() -
+    new Date(a.frontmatter.publishDate).valueOf()
+);
 ---
 
 <!-- TODO: Make it responsive -->
 <Panel title="Find your Maker now">
-  <main class="grid w-full grid-cols-1 pr-12 pb-4 min-h-screen">
+  <main class="grid w-full grid-cols-1 pb-4 min-h-screen">
     <!-- Talents -->
     <section class="w-full p-4 pt-5 pb-0 box-border">
-      <h1 class="text-white text-2xl text-left mb-3">
+      <h1
+        class="flex gap-3 items-center text-white/90 text-2xl text-left mb-3 max-md:text-xl"
+      >
+        <img
+          loading="lazy"
+          decoding="async"
+          src="/favicon.webp"
+          width="28"
+          class="mb-3 mt-4 inline md:hidden"
+        />
         Discover Talents, {USERNAME}
       </h1>
-      <Cards filter="" category="" />
+      <Cards filter="" category="" long />
     </section>
     <!-- Categories -->
-    <section class="w-full pl-2 box-border">
+    <section class="w-full pl-2 pr-4 box-border">
       <h2 class="text-white text-2xl mb-4 pl-3 mt-4">Categories</h2>
       <div
         class="grid items-center gap-4 ml-2 grid-auto-fit-[100px] lg:grid-auto-fit"
@@ -77,65 +92,41 @@ const USERNAME = Astro.cookies.get("name")?.value || "";
       </div>
     </section>
     <!-- My Learning -->
-    <section class="w-full pl-2 mb-2 mt-2 box-border">
+    <section class="w-full pl-2 mb-2 mt-2 pr-4 box-border">
       <h2 class="text-white text-2xl mb-4 pl-3">My Learning</h2>
       <div class="grid items-center gap-3 ml-2 grid-auto-fit-lg">
-        <article
-          class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[160px] flex gap-4 w-full"
-        >
-          <img
-            src="/mountain.webp"
-            loading="lazy"
-            decoding="async"
-            alt="A camera taking a photo."
-            class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
-          />
+        {
+          posts.map((post) => (
+            <article class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[160px] flex gap-4 w-full">
+              <img
+                src={post.frontmatter.image}
+                loading="lazy"
+                decoding="async"
+                alt="A camera taking a photo."
+                class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
+              />
 
-          <a
-            href="/blog/cam-01"
-            class="flex justify-between flex-col h-full min-h-[100px]"
-          >
-            <i
-              class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-maker bg-white h-6 grid place-items-center"
-            ></i>
+              <a
+                href={post.url}
+                class="flex justify-between flex-col h-full min-h-[100px]"
+              >
+                <i class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-maker bg-white h-6 grid place-items-center" />
 
-            <h3 class="text-white text-lg w-3/4">Becoming a photographer</h3>
-            <div class="flex justify-between px-2 pl-0">
-              <div class="flex items-center gap-2">
-                <i class="mdi mdi-clock-time-twelve text-xl mdi-light"></i>
-                <span class="text-white/70 text-xs">29% complete</span>
-              </div>
-            </div>
-          </a>
-        </article>
-        <article
-          class="relative rounded-xl pb-3 bg-[#222] p-2 max-h-[240px] flex gap-4 w-full"
-        >
-          <img
-            src="/design_thinking.webp"
-            loading="lazy"
-            decoding="async"
-            alt="A camera taking a photo."
-            class="rounded-lg object-cover h-full w-full max-w-[100px] aspect-square"
-          />
-
-          <a
-            href="/blog/design-thinking"
-            class="flex justify-between flex-col h-full min-h-[100px]"
-          >
-            <i
-              class="mdi mdi-bookmark mdi-16px aspect-square rounded-full absolute right-3 top-3 hover:scale-110 transition-transform cursor-pointer hover:opacity-80 z-20 text-maker bg-white h-6 grid place-items-center"
-            ></i>
-
-            <h3 class="text-white text-lg w-3/4">Design thinking</h3>
-            <div class="flex justify-between px-2 pl-0">
-              <div class="flex items-center gap-2">
-                <i class="mdi mdi-clock-time-twelve text-xl mdi-light"></i>
-                <span class="text-white/70 text-xs">69% complete</span>
-              </div>
-            </div>
-          </a>
-        </article>
+                <h3 class="text-white text-lg w-3/4">
+                  {post.frontmatter.title}
+                </h3>
+                <div class="flex justify-between px-2 pl-0">
+                  <div class="flex items-center gap-2">
+                    <i class="mdi mdi-clock-time-twelve text-xl mdi-light" />
+                    <span class="text-white/70 text-xs">
+                      {post.frontmatter.category}
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))
+        }
       </div>
     </section>
   </main>

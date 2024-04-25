@@ -1,0 +1,61 @@
+---
+import Container from "../components/container.astro";
+import Footer from "../sections/Footer.astro";
+import Layout from "./Layout.astro";
+import Action from "../components/Action.astro";
+import Nav from "../components/Nav.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <Nav class="pr-8" />
+  <Container>
+    <div class="mx-auto lg:w-2/3 mt-14">
+      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+        {frontmatter.category}
+      </span>
+      <h1
+        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight"
+      >
+        {frontmatter.title}
+      </h1>
+      <div class="flex gap-2 mt-3 items-center">
+        <span class="text-gray-400">
+          {frontmatter.author}
+        </span>
+        <span class="text-gray-400">•</span>
+        <time class="text-gray-400" datetime={frontmatter.publishDate}>
+          {frontmatter.publishDate}
+        </time>
+        <span class="text-gray-400">•</span>
+        <div class="flex gap-3">
+          {
+            frontmatter.tags.map((tag) => (
+              <span class="text-sm text-gray-500">#{tag}</span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto lg:w-2/3 prose prose-lg mt-6">
+      <slot />
+    </div>
+    <div class="text-center mt-8">
+      <Action href="/blog" class="w-full">Back to blog</Action>
+    </div>
+    <Footer />
+  </Container>
+</Layout>
+
+<style is:inline>
+  h2 {
+    font-size: 2rem;
+    margin-block: 10px 20px;
+    text-decoration: underline;
+  }
+  p {
+    color: #ffffffdb;
+  }
+</style>

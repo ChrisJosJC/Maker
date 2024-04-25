@@ -7,10 +7,17 @@ interface Props {
   max?: number;
   category: string;
   user?: string;
+  long?: boolean;
 }
 const isAccountPage = Astro.request.url.includes("/account");
 const isProfilePage = Astro.request.url.includes("/profile");
-const { filter = "", max = 4, category = "", user = "" } = Astro.props;
+const {
+  filter = "",
+  max = 4,
+  category = "",
+  user = "",
+  long = false,
+} = Astro.props;
 
 let condition = "";
 if (category != "") condition = `category="${category}"`;
@@ -30,7 +37,7 @@ let { items } = await pb.collection("films").getList(1, max, {
   class:list={[
     "talents w-full grid gap-3",
     isAccountPage || isProfilePage
-      ? "md:grid-cols-2 md:grid-cols-2"
+      ? "md:grid-cols-2"
       : "grid-auto-fit lg:grid-cols-4",
   ]}
 >
@@ -39,18 +46,18 @@ let { items } = await pb.collection("films").getList(1, max, {
       return (
         <Card
           id={record.id}
-          author={record.expand.posted_by.name}
+          author={record?.expand?.posted_by?.name}
           desc={record.description}
           title={record.title}
           time={record.duration}
           starred={record.starred}
           author_photo={pb.files.getUrl(
-            record.expand.posted_by,
-            record.expand.posted_by.avatar,
+            record?.expand?.posted_by,
+            record?.expand?.posted_by?.avatar,
             { thumb: "100x100" }
           )}
           banner={pb.files.getUrl(record, record.banner)}
-          max_height={max <= 4}
+          max_height={max <= 4 && !long}
         />
       );
     })

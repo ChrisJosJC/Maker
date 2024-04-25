@@ -1,3 +1,14 @@
+---
+title: "Design Thinking in the Creative World: Innovating with Purpose"
+excerpt: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
+publishDate: "2022-11-08T11:39:36.050Z"
+image: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+category: "Tips"
+author: "Chris Joseph"
+layout: "../../layouts/BlogLayout.astro"
+tags: [begin, design]
+---
+
 # Design Thinking in the Creative World: Innovating with Purpose
 
 ---

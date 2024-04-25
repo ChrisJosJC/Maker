@@ -58,6 +58,12 @@ const description =
       grid-template-columns: 0.1fr 1.6fr;
       width: 100%;
     }
+    @media (max-width: 768px) {
+      .panel {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+    }
     :root {
       --accent: 136, 58, 234;
       --accent-light: 224, 204, 250;

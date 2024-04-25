@@ -1,10 +1,14 @@
 ---
 import BetaSpot from "../components/BetaSpot.astro";
-import Footer from "../components/Footer.astro";
+import Footer from "../sections/Footer.astro";
+import Sponsors from "../sections/Sponsors.astro";
+import SponsorChip from "../components/SponsorChip.astro";
 import Hero from "../sections/Hero.astro";
 import Projects from "../sections/Projects.astro";
 import Layout from "../layouts/Layout.astro";
 import BackgroundBlurry from "../components/BackgroundBlurry.astro";
+import Testimonial from "../sections/Testimonial.astro";
+import End from "../sections/End.astro";
 
 if (Astro.cookies.has("logged")) return Astro.redirect("/dashboard", 303);
 const status = Astro.url.searchParams.get("code");
@@ -14,29 +18,17 @@ const status = Astro.url.searchParams.get("code");
   <BackgroundBlurry />
   <Hero />
   <Projects />
-
-  <section class="bg-white/10 backdrop:blur-md">
-    <div class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4 mb-0 pb-2 mt-6">
-      <h2
-        class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 md:text-4xl"
-      >
-        Our sponsors
-      </h2>
-      <div
-        class="grid place-items-center grid-cols-2 gap-8 text-gray-800 sm:gap-12 md:grid-cols-3"
-      >
-        <a
-          href="tel:1809-765-3566"
-          class="backdrop:blur-md hover:scale-105 transition-all rounded-full w-48 h-48 flex flex-col items-center justify-center font-bold text-md pb-3 text-white px-4"
-          ><img
-            src="/Sponsor-One.png"
-            class="h-32 object-cover object-center"
-            alt="Fran De Connection Sponsor"
-          />Fran De Connection</a
-        >
-      </div>
-    </div>
-  </section>
+  <Testimonial>
+    "Makerly transformed my online creativity. It's intuitive, user-friendly,
+    and connects me with a vibrant community. Grateful for this platform!"</Testimonial
+  >
+  <Sponsors>
+    <SponsorChip source="/Sponsor-One.png">Fran De Connection</SponsorChip>
+    <SponsorChip source="/Sponsor-Two.png"
+      >Instituto Politecnico Pedro Feliciano Martinez</SponsorChip
+    >
+  </Sponsors>
+  <End />
   <Footer />
   <BetaSpot />
 </Layout>

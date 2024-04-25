@@ -3,17 +3,17 @@ import "@mdi/font/css/materialdesignicons.min.css";
 ---
 
 <aside
-  class="flex flex-col items-center gap-6 w-20 bg-[#222] p-2 h-screen rounded-e-sm sticky top-0"
+  class="flex max-md:justify-center max-md:w-full max-md:sticky max-md:bottom-0 z-50 md:flex-col items-center gap-6 md:w-20 bg-[#222] p-2 md:h-screen rounded-e-sm sticky top-0 max-md:pt-5"
 >
   <img
     loading="lazy"
     decoding="async"
     src="/favicon.webp"
     width="28"
-    class="mb-3 mt-4"
+    class="mb-3 mt-4 hidden md:inline"
   />
 
-  <div class="flex flex-col gap-4">
+  <div class="flex md:flex-col md:gap-4 gap-10">
     <a
       href="/dashboard"
       class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
@@ -33,10 +33,10 @@ import "@mdi/font/css/materialdesignicons.min.css";
       <i class="mdi mdi-play-circle mdi-24px text-white"></i>Create</a
     >
     <a
-      href="/learning"
+      href="/blog"
       class="text-white grid place-items-center text-xs gap-1 hover:scale-95 hover:opacity-90 transition-transform"
     >
-      <i class="mdi mdi-bookmark mdi-24px text-white"></i>Saved</a
+      <i class="mdi mdi-bookmark mdi-24px text-white"></i>Blog</a
     >
     <a
       href="/account"
